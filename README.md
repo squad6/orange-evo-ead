@@ -11,7 +11,7 @@
 
 - Clone o repositório em um diretório de sua preferência
          
-      https://github.com/squad6/orange-evolution.git
+      git clone https://github.com/squad6/orange-evolution.git
 
 - Abra o terminal no diretório do projeto
 - Execute os seguintes comandos

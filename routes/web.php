@@ -34,3 +34,6 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/home', [AdminController::class, 'index'])->name('admin.home')->middleware('admin.auth');
 });
+
+// Rota de testes
+Route::get('/teste', [App\Http\Controllers\TesteController::class, 'index'])->name('teste');

@@ -20,7 +20,7 @@
        ./vendor/bin/sail composer install
        ./vendor/bin/sail npm install
        ./vendor/bin/sail art migrate
-       ./vendor/bin/sail npm run build
+       ./vendor/bin/sail npm run dev
 
 - Abra o seu navegador e digite `localhost`, na barra de endereços
 - Pronto, a aplicação deve estar rodando

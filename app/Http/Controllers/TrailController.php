@@ -46,7 +46,7 @@ class TrailController extends Controller
         // As validações estão sendo feitas no StoreFormRequest
         Trail::create($request->all());
 
-        return view('pages.trail.create')->with('message', 'Cadastro realizado com sucesso!');
+        return view('pages.trail.create')->with('message', 'Trilha cadastrada com sucesso!');
     }
 
     /**
@@ -57,10 +57,7 @@ class TrailController extends Controller
      */
     public function show(Trail $trail)
     {
-        if (Trail::find($trail))
-            return view('pages.trail.show', ['trail' => $trail]);
-        else
-            return redirect()->back()->with('message', 'Trilha não encontrada!');
+        return view('pages.trail.show', ['trail' => $trail]);
     }
 
     /**
@@ -71,7 +68,7 @@ class TrailController extends Controller
      */
     public function edit(Trail $trail)
     {
-        //
+        return view('pages.trail.edit', ['trail' => $trail]);
     }
 
     /**
@@ -83,7 +80,9 @@ class TrailController extends Controller
      */
     public function update(Request $request, Trail $trail)
     {
-        //
+        $trail->update($request->all());
+
+        return view('pages.trail.show', ['trail'=> $trail])->with('message', 'Trilha cadastrada com sucesso!');
     }
 
     /**
@@ -94,6 +93,8 @@ class TrailController extends Controller
      */
     public function destroy(Trail $trail)
     {
-        //
+        $trail->delete();
+
+        return redirect()->route('trail.index');
     }
 }

@@ -57,7 +57,10 @@ class TrailController extends Controller
      */
     public function show(Trail $trail)
     {
-        //
+        if (Trail::find($trail))
+            return view('pages.trail.show', ['trail' => $trail]);
+        else
+            return redirect()->back()->with('message', 'Trilha não encontrada!');
     }
 
     /**

@@ -16,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', [App\Http\Controllers\UserController::class, 'index'])->name('dashboard');
 
 // Admin Routes
 Route::prefix('admin')->group(function () {
@@ -32,7 +32,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/register', [AdminController::class, 'registerView'])->name('admin.register.view')->middleware('admin.auth');
     Route::post('/resgiter', [AdminController::class, 'create'])->name('admin.register')->middleware('admin.auth');
 
-    Route::get('/home', [AdminController::class, 'index'])->name('admin.home')->middleware('admin.auth');
+    Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard')->middleware('admin.auth');
 });
 
 // Rota de testes

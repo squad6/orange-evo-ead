@@ -13,7 +13,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.home');
+        return view('admin.dashboard');
     }
 
     function registerView()
@@ -31,7 +31,7 @@ class AdminController extends Controller
         $check = $request->all();
 
         if(Auth::guard('admin')->attempt(['email' => $check['email'], 'password' => $check['password'] ])) {
-            return redirect()->route('admin.home');
+            return redirect()->route('admin.dashboard');
         } else {
             return back()->with('message', 'E-mail ou senha inválida.');
         }

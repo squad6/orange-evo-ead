@@ -27,7 +27,7 @@ class StoreModuleRequest extends FormRequest
             'title' => 'required',
             'description' => 'required',
             'time' => 'required',
-            'trail_id' => 'required',
+            // 'trail_id' => 'required',
         ];
     }
 

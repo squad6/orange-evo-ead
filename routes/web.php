@@ -44,7 +44,7 @@ Route::prefix('admin')->group(function () {
 Route::resource('trail', TrailController::class)->names('trail');
 
 // Rotas de modulos
-Route::resource('/{trail}/module', ModuleController::class)->names('module');
+Route::resource('trail/{trail}/module', ModuleController::class)->names('module');
 
 
 // Rota de testes

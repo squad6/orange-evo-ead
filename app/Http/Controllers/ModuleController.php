@@ -39,13 +39,13 @@ class ModuleController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\StoreModuleRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreModuleRequest $request, Trail $trail)
     {
         // As validações estão sendo feitas no ModuleStoreRequest
-        $store = $trail->modules()->create(
+        $trail->modules()->create(
             $request->all(),
             ['trail_id' => $trail->id],
         );

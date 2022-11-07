@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\Admin\AdminController;
+use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\TrailController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -40,15 +41,11 @@ Route::prefix('admin')->group(function () {
 
 
 // Rotas de Trilhas
-// Route::group([
-//     'middleware' => 'admin',
-// ], function () {
-//     Route::resource('trail', TrailController::class)
-//         ->except(['index', 'show']);
-// });
-
-
 Route::resource('trail', TrailController::class)->names('trail');
+
+// Rotas de modulos
+Route::resource('/{trail}/module', ModuleController::class)->names('module');
+
 
 // Rota de testes
 Route::get('/teste', [App\Http\Controllers\TesteController::class, 'index'])->name('teste');

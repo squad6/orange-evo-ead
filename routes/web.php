@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\Admin\AdminController;
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\TrailController;
 use Illuminate\Support\Facades\Auth;
@@ -45,6 +46,9 @@ Route::resource('trail', TrailController::class)->names('trail');
 
 // Rotas de modulos
 Route::resource('trail/{trail}/module', ModuleController::class)->names('module');
+
+// Rotas de conteúdos
+Route::resource('trail/{trail}/module/{module}/content', ContentController::class)->names('content');
 
 
 // Rota de testes

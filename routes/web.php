@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\Admin\AdminController;
 use App\Http\Controllers\ContentController;
+use App\Http\Controllers\ContentUserController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\TrailController;
 use App\Http\Controllers\TrailUserController;
@@ -55,6 +56,9 @@ Route::resource('trail/{trail}/module/{module}/content', ContentController::clas
 Route::middleware('auth')->group(function() {
     Route::get('/choose-trail/{trail}', [TrailUserController::class, 'chooseTrail'])->name('choose.trail');
     Route::get('/my-trails', [TrailUserController::class, 'index'])->name('my.trails');
+
+    Route::get('/content-check', [ContentUserController::class, 'checkContent'])->name('check.content');
+    Route::get('/content-show', [ContentUserController::class, 'index'])->name('show.content');
 });
 
 // Rota de testes

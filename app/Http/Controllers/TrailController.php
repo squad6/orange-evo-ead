@@ -43,7 +43,7 @@ class TrailController extends Controller
      */
     public function store(StoreTrailRequest $request)
     {
-        // As validações estão sendo feitas no StoreFormRequest
+        // As validações estão sendo feitas no StoreTrailRequest
         Trail::create($request->all());
 
         return view('pages.trail.create')->with('message', 'Trilha cadastrada com sucesso!');

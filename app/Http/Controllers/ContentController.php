@@ -46,10 +46,12 @@ class ContentController extends Controller
     public function store(Trail $trail, Module $module, StoreContentRequest $request)
     {
         // As validações estão sendo feitas no StoreContentRequest
-        $module->contents()->create(
+        $content_stored = $module->contents()->create(
             $request->all(),
             ['module_id' => $module->id],
         );
+
+        return view('pages.trail.module.content.create', ['trail' => $trail, 'module' => $module])->with('message', 'Conteúdo cadastrado com sucesso!');
     }
 
     /**

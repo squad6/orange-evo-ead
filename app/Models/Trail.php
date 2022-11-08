@@ -20,4 +20,9 @@ class Trail extends Model
     {
         return $this->hasMany(Module::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'trail_users')->withPivot(['trail_id','user_id','trail_status']);
+    }
 }

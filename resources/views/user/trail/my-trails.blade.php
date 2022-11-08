@@ -1,14 +1,12 @@
+<h1>Minhas trilhas</h1>
+
 @if (isset($trails))
     <ul>
         @foreach ($trails as $trail)
             <li>
                 {{ $trail->title }}
-                <button><a href="{{ route('choose.trail', $trail->id) }}">Adicionar</a></button>
+                <a href="{{ route('trail.show', $trail->id) }}">Ver</a>
             </li>
         @endforeach
     </ul>
-@endif
-
-@if (isset($message))
-    <p>{{ $message }}</p>
 @endif

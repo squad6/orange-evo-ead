@@ -82,7 +82,7 @@ class TrailController extends Controller
     {
         $trail->update($request->all());
 
-        return view('pages.trail.show', ['trail'=> $trail])->with('message', 'Trilha cadastrada com sucesso!');
+        return view('pages.trail.show', ['trail'=> $trail])->with('message', 'Trilha atualizada com sucesso!');
     }
 
     /**

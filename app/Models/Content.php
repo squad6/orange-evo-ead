@@ -5,24 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Module extends Model
+class Content extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'trail_id',
+        'module_id',
         'title',
         'description',
         'time',
+        'type',
+        'link',
+        'content_by',
     ];
 
-    public function trail()
+    public function module()
     {
-        return $this->belongsTo(Trail::class);
-    }
-
-    public function contents()
-    {
-        return $this->hasMany(Content::class);
+        return $this->belongsTo(Module::class);
     }
 }

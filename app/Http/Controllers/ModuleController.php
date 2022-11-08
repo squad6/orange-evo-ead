@@ -90,7 +90,7 @@ class ModuleController extends Controller
 
         $module->update($request->all());
 
-        return view('pages.trail.module.show', ['trail' => $trail, 'module'=> $module])->with('message', 'Trilha cadastrada com sucesso!');
+        return view('pages.trail.module.show', ['trail' => $trail, 'module'=> $module])->with('message', 'Módulo atualizado com sucesso!');
     }
 
     /**

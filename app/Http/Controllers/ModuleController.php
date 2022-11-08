@@ -44,11 +44,13 @@ class ModuleController extends Controller
      */
     public function store(StoreModuleRequest $request, Trail $trail)
     {
-        // As validações estão sendo feitas no ModuleStoreRequest
-        $trail->modules()->create(
+        // As validações estão sendo feitas no StoreModuleRequest
+        $module_stored = $trail->modules()->create(
             $request->all(),
             ['trail_id' => $trail->id],
         );
+
+        return view('pages.trail.module.create', ['trail' => $trail])->with('message', 'Módulo cadastrado com sucesso');
     }
 
     /**

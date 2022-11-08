@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\Admin\AdminController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\ModuleController;
 use App\Http\Controllers\TrailController;
+use App\Http\Controllers\TrailUserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +51,11 @@ Route::resource('trail/{trail}/module', ModuleController::class)->names('module'
 // Rotas de conteúdos
 Route::resource('trail/{trail}/module/{module}/content', ContentController::class)->names('content');
 
+// Rotas para controle de trilhas escolhidas pelos usuários
+Route::middleware('auth')->group(function() {
+    Route::get('/choose-trail/{trail}', [TrailUserController::class, 'chooseTrail'])->name('choose.trail');
+    Route::get('/my-trails', [TrailUserController::class, 'index'])->name('my.trails');
+});
 
 // Rota de testes
 Route::get('/teste', [App\Http\Controllers\TesteController::class, 'index'])->name('teste');

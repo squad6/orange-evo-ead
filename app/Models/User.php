@@ -41,4 +41,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function trails()
+    {
+        return $this->belongsToMany(Trail::class, 'trail_users')->withPivot(['trail_id','user_id','trail_status']);
+    }
 }

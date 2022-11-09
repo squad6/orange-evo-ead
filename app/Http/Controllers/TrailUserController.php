@@ -16,7 +16,7 @@ class TrailUserController extends Controller
 
         $trails = $user->trails;
 
-        return view('user.trail.my-trails', ['trails' => $trails]);
+        return view('user.dashboard', ['trails' => $trails]);
     }
 
     public function chooseTrail(Trail $trail)
@@ -28,6 +28,6 @@ class TrailUserController extends Controller
             'trail_id' => $trail->id,
         ]);
 
-        return redirect()->route('my.trails');
+        return redirect()->route('user.dashboard');
     }
 }

@@ -22,7 +22,7 @@ class TrailController extends Controller
     {
         $trails = Trail::all();
 
-        return view('pages.trail.index', ['trails' => $trails]);
+        return view('trail.index', ['trails' => $trails]);
     }
 
     /**
@@ -32,7 +32,7 @@ class TrailController extends Controller
      */
     public function create()
     {
-        return view('pages.trail.create');
+        return view('trail.create');
     }
 
     /**
@@ -46,7 +46,7 @@ class TrailController extends Controller
         // As validações estão sendo feitas no StoreTrailRequest
         Trail::create($request->all());
 
-        return view('pages.trail.create')->with('message', 'Trilha cadastrada com sucesso!');
+        return view('trail.create')->with('message', 'Trilha cadastrada com sucesso!');
     }
 
     /**
@@ -57,7 +57,7 @@ class TrailController extends Controller
      */
     public function show(Trail $trail)
     {
-        return view('pages.trail.show', ['trail' => $trail]);
+        return view('trail.show', ['trail' => $trail]);
     }
 
     /**
@@ -68,7 +68,7 @@ class TrailController extends Controller
      */
     public function edit(Trail $trail)
     {
-        return view('pages.trail.edit', ['trail' => $trail]);
+        return view('trail.edit', ['trail' => $trail]);
     }
 
     /**
@@ -82,7 +82,7 @@ class TrailController extends Controller
     {
         $trail->update($request->all());
 
-        return view('pages.trail.show', ['trail'=> $trail])->with('message', 'Trilha atualizada com sucesso!');
+        return view('trail.show', ['trail'=> $trail])->with('message', 'Trilha atualizada com sucesso!');
     }
 
     /**

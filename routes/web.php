@@ -37,18 +37,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/resgiter', [AdminController::class, 'create'])->name('admin.register')->middleware('admin.auth');
 
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard')->middleware('admin.auth');
-
-    // Rotas de Trilhas
-    Route::resource('trail', TrailController::class)->names('trail')->middleware('admin.auth');
-
-    // Rotas de modulos
-    Route::resource('trail/{trail}/module', ModuleController::class)->names('module')->middleware('admin.auth');
-
-    // Rotas de conteúdos
-    Route::resource('trail/{trail}/module/{module}/content', ContentController::class)->names('content')->middleware('admin.auth');
 });
-
-
 
 
 // Rotas para controle de trilhas escolhidas pelos usuários
@@ -63,16 +52,16 @@ Route::prefix('user')->middleware('auth')->group(function () {
 
     Route::get('/content-check', [ContentUserController::class, 'checkContent'])->name('check.content');
     Route::get('/content-show', [ContentUserController::class, 'index'])->name('show.content');
-
-    // Rotas de Trilhas
-    Route::resource('trail', TrailController::class)->names('trail');
-
-    // Rotas de modulos
-    Route::resource('trail/{trail}/module', ModuleController::class)->names('module');
-
-    // Rotas de conteúdos
-    Route::resource('trail/{trail}/module/{module}/content', ContentController::class)->names('content');
 });
+
+// Rotas de Trilhas
+Route::resource('/trail', TrailController::class)->names('trail');
+
+// Rotas de modulos
+Route::resource('/trail/{trail}/module', ModuleController::class)->names('module');
+
+// Rotas de conteúdos
+Route::resource('/trail/{trail}/module/{module}/content', ContentController::class)->names('content');
 
 // Rota de testes
 Route::get('/teste', [App\Http\Controllers\TesteController::class, 'index'])->name('teste');

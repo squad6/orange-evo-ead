@@ -9,12 +9,12 @@
             </li>
             @if ($trail->pivot->trail_status > 0)
                 <li>
-                    Barra de status
+                    Barra de status {{ $trail->pivot->trail_status }}
                     <a href="{{ route('trail.show', $trail->id) }}">Continuar</a>
                 </li>
             @else
                 <li>
-                    Barra de status
+                    Barra de status {{ $trail->pivot->trail_status }}
                     <a href="{{ route('trail.show', $trail->id) }}">Iniciar</a>
                 </li>
             @endif

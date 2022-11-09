@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Content;
 use App\Models\ContentUser;
+use App\Models\TrailUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,6 +32,14 @@ class ContentUserController extends Controller
                 'content_status' => $request->content_status,
             ]);
         }
+
+        // Atualizar status da trilha
+        $trail = $content->module->trail;
+
+        $trail_user = new TrailUserController;
+
+        return $trail_user->setTrailUserStatus($trail, $request->content_status);
+
 
         // dd($content_user);
 

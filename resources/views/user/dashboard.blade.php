@@ -1,4 +1,4 @@
-<h1>Minhas trilhas</h1>
+<h1>Minhas Trilhas</h1>
 
 @if (isset($trails))
     <ul>
@@ -10,3 +10,8 @@
         @endforeach
     </ul>
 @endif
+
+<form action="{{ route('logout') }}" method="POST">
+    @csrf
+    <button type="submit">Sair</button>
+</form>

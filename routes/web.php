@@ -65,3 +65,6 @@ Route::resource('/trail/{trail}/module/{module}/content', ContentController::cla
 
 // Rota de testes
 Route::get('/teste', [App\Http\Controllers\TesteController::class, 'index'])->name('teste');
+
+// Rota de testes
+Route::get('/teste/status/{trail}/{status_content}', [App\Http\Controllers\TrailUserController::class, 'setTrailUserStatus']);

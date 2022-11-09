@@ -43,6 +43,7 @@ Route::prefix('admin')->group(function () {
 // Rotas para controle de trilhas escolhidas pelos usuários
 Route::prefix('user')->middleware('auth')->group(function () {
     Route::get('/choose-trail/{trail}', [TrailUserController::class, 'chooseTrail'])->name('choose.trail');
+    Route::delete('/trail/{trail}/delete', [TrailUserController::class, 'destroy'])->name('user.trail.destroy');
 
     Route::get('/dashboard', [TrailUserController::class, 'index'])->name('user.dashboard');
 

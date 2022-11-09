@@ -9,16 +9,31 @@ use Illuminate\Support\Facades\Auth;
 
 class ContentUserController extends Controller
 {
-    public function checkContent(Content $content)
+    public function setStatusContent(Content $content, Request $request)
     {
         $user = Auth::user();
 
-        ContentUser::create([
-            'user_id' => $user->id,
-            'content_id' => $content->id,
-            'content_check' => true,
-        ]);
+        // dd($request->content_status);
 
-        return view('content-show', ['content' => $content]);
+        $content_user = ContentUser::where('user_id', $user->id)
+            ->where('content_id', $content->id);
+
+        // dd($content_user);
+
+        if ($content_user->first() !== null) {
+            $content_user->update([
+                'content_status' => $request->content_status,
+            ]);
+        } else {
+            $content_user = ContentUser::create([
+                'user_id' => $user->id,
+                'content_id' => $content->id,
+                'content_status' => $request->content_status,
+            ]);
+        }
+
+        // dd($content_user);
+
+        return redirect()->route('content.show', ['trail' => $content->module->trail->id, 'module' => $content->module->id, 'content' => $content]);
     }
 }

@@ -50,7 +50,7 @@ Route::prefix('user')->middleware('auth')->group(function () {
         return view('user.orange-juice');
     })->name('user.orange');
 
-    Route::get('/content-check', [ContentUserController::class, 'checkContent'])->name('check.content');
+    Route::post('/content-status/{content}', [ContentUserController::class, 'setStatusContent'])->name('status.content');
     Route::get('/content-show', [ContentUserController::class, 'index'])->name('show.content');
 });
 

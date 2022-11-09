@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('content_users', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('content_id');
-            $table->boolean('content_check')->default(0);
+            $table->foreignId('user_id');
+            $table->foreignId('content_id');
+            $table->integer('content_status')->default(0);
         });
     }
 

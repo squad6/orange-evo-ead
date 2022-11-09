@@ -5,6 +5,11 @@
         @foreach ($trails as $trail)
             <li>
                 {{ $trail->title }}
+                <form action="{{ route('user.trail.destroy', $trail->id) }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit">Desinscrever</button>
+                </form>
                 <a href="{{ route('trail.show', $trail->id) }}">Ver</a>
             </li>
             @if ($trail->pivot->trail_status > 0)

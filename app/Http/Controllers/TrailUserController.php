@@ -82,4 +82,14 @@ class TrailUserController extends Controller
 
         return redirect()->route('user.dashboard');
     }
+
+    public function destroy(Trail $trail) {
+        $user = Auth::user();
+
+        $trail_user = TrailUser::where('user_id', $user->id)->where('trail_id', $trail->id);
+
+        $trail_user->delete();
+
+        return redirect()->route('user.dashboard')->with('message', 'Você se desinscreveu da trilha com sucesso!');
+    }
 }

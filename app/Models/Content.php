@@ -23,4 +23,9 @@ class Content extends Model
     {
         return $this->belongsTo(Module::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'content_users')->withPivot(['content_id','user_id','content_status']);
+    }
 }

@@ -8,7 +8,7 @@
     @foreach ($trail->modules as $module)
         <li>
             <p>{{ $module->title }}</p>
-
+            <button><a href="{{ route('content.index', ['trail' => $trail->id, 'module' => $module->id]) }}">Ver conteudo</a></button>
 
         </li>
     @endforeach

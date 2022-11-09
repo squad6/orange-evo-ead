@@ -14,6 +14,6 @@ class ContentUser extends Model
     protected $fillable = [
         'user_id',
         'content_id',
-        'content_check',
+        'content_status',
     ];
 }

@@ -46,4 +46,9 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Trail::class, 'trail_users')->withPivot(['trail_id','user_id','trail_status']);
     }
+
+    public function contents()
+    {
+        return $this->belongsToMany(Content::class, 'content_users')->withPivot(['content_id','user_id','content_status']);
+    }
 }

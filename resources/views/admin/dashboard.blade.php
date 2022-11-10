@@ -12,4 +12,5 @@
 
     <h2>Registrar um admin</h2>
     <a class="btn btn-primary" href="{{ route('admin.register.view') }}">novo admin</a>
+
 @endsection

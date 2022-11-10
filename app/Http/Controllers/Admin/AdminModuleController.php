@@ -1,19 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreModuleRequest;
 use App\Models\Module;
 use App\Models\Trail;
 use Illuminate\Http\Request;
 
-class ModuleController extends Controller
+class AdminModuleController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('admin.auth')->except(['index', 'show']);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -23,7 +19,7 @@ class ModuleController extends Controller
     {
         $modules = $trail->modules()->get();
 
-        return view('trail.module.index', ['modules' => $modules]);
+        return view('admin.trail.module.index', ['modules' => $modules]);
     }
 
     /**
@@ -33,7 +29,7 @@ class ModuleController extends Controller
      */
     public function create(Trail $trail)
     {
-        return view('trail.module.create', ['trail' => $trail]);
+        return view('admin.trail.module.create', ['trail' => $trail]);
     }
 
     /**
@@ -50,7 +46,7 @@ class ModuleController extends Controller
             ['trail_id' => $trail->id],
         );
 
-        return view('trail.module.create', ['trail' => $trail])->with('message', 'Módulo cadastrado com sucesso');
+        return view('admin.trail.module.create', ['trail' => $trail])->with('message', 'Módulo cadastrado com sucesso');
     }
 
     /**
@@ -63,7 +59,7 @@ class ModuleController extends Controller
     {
         $module = $trail->modules()->find($module)->first();
 
-        return view('trail.module.show', ['module' => $module]);
+        return view('admin.trail.module.show', ['module' => $module]);
     }
 
     /**
@@ -76,7 +72,7 @@ class ModuleController extends Controller
     {
         $module = $trail->modules()->find($module)->first();
 
-        return view('trail.module.edit', ['module' => $module, 'trail' => $trail]);
+        return view('admin.trail.module.edit', ['module' => $module, 'trail' => $trail]);
     }
 
     /**
@@ -92,7 +88,7 @@ class ModuleController extends Controller
 
         $module->update($request->all());
 
-        return view('trail.module.show', ['trail' => $trail, 'module'=> $module])->with('message', 'Módulo atualizado com sucesso!');
+        return view('admin.trail.module.show', ['trail' => $trail, 'module'=> $module])->with('message', 'Módulo atualizado com sucesso!');
     }
 
     /**
@@ -107,6 +103,6 @@ class ModuleController extends Controller
 
         $module->delete();
 
-        return redirect()->route('module.index', ['trail' => $trail]);
+        return redirect()->route('admin.module.index', ['trail' => $trail]);
     }
 }

@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminContentController;
+use App\Http\Controllers\Admin\AdminModuleController;
+use App\Http\Controllers\Admin\AdminTrailController;
 use App\Http\Controllers\Auth\Admin\AdminController;
-use App\Http\Controllers\ContentController;
-use App\Http\Controllers\ContentUserController;
-use App\Http\Controllers\ModuleController;
-use App\Http\Controllers\TrailController;
-use App\Http\Controllers\TrailUserController;
+use App\Http\Controllers\User\UserContentController;
+use App\Http\Controllers\User\UserContentUserController;
+use App\Http\Controllers\User\UserModuleController;
+use App\Http\Controllers\User\UserTrailController;
+use App\Http\Controllers\User\UserTrailUserController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return redirect()->route('login');
 });
 
 // Rotas de autenticação de usuário
@@ -37,35 +40,45 @@ Route::prefix('admin')->group(function () {
     Route::post('/resgiter', [AdminController::class, 'create'])->name('admin.register')->middleware('admin.auth');
 
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard')->middleware('admin.auth');
+
+    // Rotas de Trilhas
+    Route::resource('/trail', AdminTrailController::class)->names('admin.trail')->middleware('admin.auth');
+
+    // Rotas de modulos
+    Route::resource('/trail/{trail}/module', AdminModuleController::class)->names('admin.module')->middleware('admin.auth');
+
+    // Rotas de conteúdos
+    Route::resource('/trail/{trail}/module/{module}/content', AdminContentController::class)->names('admin.content')->middleware('admin.auth');
 });
 
 
 // Rotas para controle de trilhas escolhidas pelos usuários
 Route::prefix('user')->middleware('auth')->group(function () {
-    Route::get('/choose-trail/{trail}', [TrailUserController::class, 'chooseTrail'])->name('choose.trail');
-    Route::delete('/trail/{trail}/delete', [TrailUserController::class, 'destroy'])->name('user.trail.destroy');
+    Route::get('/choose-trail/{trail}', [UserTrailUserController::class, 'chooseTrail'])->name('user.trail.subscribe');
+    Route::delete('/trail/{trail}/delete', [UserTrailUserController::class, 'destroy'])->name('user.trail.unsubscribe');
 
-    Route::get('/dashboard', [TrailUserController::class, 'index'])->name('user.dashboard');
+    Route::get('/dashboard', [UserTrailUserController::class, 'index'])->name('user.dashboard');
 
     Route::get('/orange-juice', function () {
         return view('user.orange-juice');
     })->name('user.orange');
 
-    Route::post('/content-status/{content}', [ContentUserController::class, 'setStatusContent'])->name('status.content');
-    Route::get('/content-show', [ContentUserController::class, 'index'])->name('show.content');
+    Route::post('/content-status/{content}', [UserContentUserController::class, 'setStatusContent'])->name('user.status.content');
+    Route::get('/content-show', [UserContentUserController::class, 'index'])->name('user.show.content');
+
+    // Rotas de Trilhas
+    Route::resource('/trail', UserTrailController::class)->names('user.trail');
+
+    // Rotas de modulos
+    Route::resource('/trail/{trail}/module', UserModuleController::class)->names('user.module');
+
+    // Rotas de conteúdos
+    Route::resource('/trail/{trail}/module/{module}/content', UserContentController::class)->names('user.content');
 });
 
-// Rotas de Trilhas
-Route::resource('/trail', TrailController::class)->names('trail');
-
-// Rotas de modulos
-Route::resource('/trail/{trail}/module', ModuleController::class)->names('module');
-
-// Rotas de conteúdos
-Route::resource('/trail/{trail}/module/{module}/content', ContentController::class)->names('content');
 
 // Rota de testes
-Route::get('/teste', [App\Http\Controllers\TesteController::class, 'index'])->name('teste');
+// Route::get('/teste', [App\Http\Controllers\TesteController::class, 'index'])->name('teste');
 
 // Rota de testes
-Route::get('/teste/status/{trail}/{status_content}', [App\Http\Controllers\TrailUserController::class, 'setTrailUserStatus']);
+// Route::get('/teste/status/{trail}/{status_content}', [App\Http\Controllers\TrailUserController::class, 'setTrailUserStatus']);

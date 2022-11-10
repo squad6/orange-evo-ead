@@ -3,7 +3,7 @@
         @foreach ($trails as $trail)
             <li>
                 {{ $trail->title }}
-                <button><a href="{{ route('trail.show', $trail->id) }}">Detalhes</a></button>
+                <button><a href="{{ route('admin.trail.show', $trail->id) }}">Detalhes</a></button>
             </li>
         @endforeach
     </ul>

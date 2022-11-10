@@ -14,20 +14,7 @@ class TrailUser extends Model
     protected $fillable = [
         'user_id',
         'trail_id',
-        'trail_status'
+        'trail_status',
+        'trail_status_percentage',
     ];
-
-    public function rules()
-    {
-        return [
-            'trail_id' => "unique:trail_users,trail_id,NULL,id,user_id,{$this->user->id}",
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-            'unique' => 'Você já se cadastrou nesta trilha.',
-        ];
-    }
 }

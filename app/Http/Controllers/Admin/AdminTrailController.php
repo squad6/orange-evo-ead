@@ -1,18 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTrailRequest;
 use App\Models\Trail;
 use Illuminate\Http\Request;
 
-class TrailController extends Controller
+class AdminTrailController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('admin.auth')->except(['index', 'show']);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +18,7 @@ class TrailController extends Controller
     {
         $trails = Trail::all();
 
-        return view('trail.index', ['trails' => $trails]);
+        return view('admin.trail.index', ['trails' => $trails]);
     }
 
     /**
@@ -32,7 +28,7 @@ class TrailController extends Controller
      */
     public function create()
     {
-        return view('trail.create');
+        return view('admin.trail.create');
     }
 
     /**
@@ -46,7 +42,7 @@ class TrailController extends Controller
         // As validações estão sendo feitas no StoreTrailRequest
         Trail::create($request->all());
 
-        return view('trail.create')->with('message', 'Trilha cadastrada com sucesso!');
+        return view('admin.trail.create')->with('message', 'Trilha cadastrada com sucesso!');
     }
 
     /**
@@ -57,7 +53,7 @@ class TrailController extends Controller
      */
     public function show(Trail $trail)
     {
-        return view('trail.show', ['trail' => $trail]);
+        return view('admin.trail.show', ['trail' => $trail]);
     }
 
     /**
@@ -68,7 +64,7 @@ class TrailController extends Controller
      */
     public function edit(Trail $trail)
     {
-        return view('trail.edit', ['trail' => $trail]);
+        return view('admin.trail.edit', ['trail' => $trail]);
     }
 
     /**
@@ -82,7 +78,7 @@ class TrailController extends Controller
     {
         $trail->update($request->all());
 
-        return view('trail.show', ['trail'=> $trail])->with('message', 'Trilha atualizada com sucesso!');
+        return view('admin.trail.show', ['trail'=> $trail])->with('message', 'Trilha atualizada com sucesso!');
     }
 
     /**
@@ -95,6 +91,6 @@ class TrailController extends Controller
     {
         $trail->delete();
 
-        return redirect()->route('trail.index');
+        return redirect()->route('admin.trail.index');
     }
 }

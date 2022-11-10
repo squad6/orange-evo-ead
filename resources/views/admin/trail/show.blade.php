@@ -2,13 +2,13 @@
 
 <p>{{ $trail->title }}</p>
 <p>{{ $trail->time }}</p>
-<button><a href="{{ route('choose.trail', $trail->id) }}">Escolher</a></button>
+
 
 <ul>
     @foreach ($trail->modules as $module)
         <li>
             <p>{{ $module->title }}</p>
-            <button><a href="{{ route('content.index', ['trail' => $trail->id, 'module' => $module->id]) }}">Ver conteudo</a></button>
+            <button><a href="{{ route('admin.content.index', ['trail' => $trail->id, 'module' => $module->id]) }}">Ver conteudo</a></button>
 
         </li>
     @endforeach

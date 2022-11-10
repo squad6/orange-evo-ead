@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('user.layouts.app')
 
 @section('content')
 <div class="container">
@@ -83,6 +83,8 @@
                             </div>
                         </div>
                     </form>
+                    <a href="{{ route('login') }}">Já tem uma conta? Entrar</a>
+                    <a href="{{route('admin.login')}}">Login com administrador? Entrar</a>
                 </div>
             </div>
         </div>

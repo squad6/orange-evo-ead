@@ -45,7 +45,7 @@ class User extends Authenticatable
 
     public function trails()
     {
-        return $this->belongsToMany(Trail::class, 'trail_users')->withPivot(['trail_id','user_id','trail_status']);
+        return $this->belongsToMany(Trail::class, 'trail_users')->withPivot(['trail_id','user_id','trail_status', 'trail_status_percentage']);
     }
 
     public function contents()

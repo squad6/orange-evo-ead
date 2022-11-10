@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('user.layouts.app')
 
 @section('content')
 <div class="container">
@@ -58,6 +58,8 @@
                                 </button>
                             </div>
                         </div>
+
+                        <a href="{{route('admin.login')}}">Login com administrador? Entrar</a>
                     </form>
                 </div>
             </div>

@@ -5,7 +5,7 @@
 {{-- {{ $content->users->where('id', Auth::user()->id )->first() }} --}}
 
 
-<form action="{{ route('status.content', ['content' => $content]) }}" method="POST">
+<form action="{{ route('user.status.content', ['content' => $content]) }}" method="POST">
     @csrf
     <select name="content_status">
         @if (isset($content->users->find(Auth::user()->id)->pivot))

@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Models\Content;
 use App\Models\ContentUser;
-use App\Models\TrailUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ContentUserController extends Controller
+class UserContentUserController extends Controller
 {
     public function setStatusContent(Content $content, Request $request)
     {
@@ -36,13 +36,10 @@ class ContentUserController extends Controller
         // Atualizar status da trilha
         $trail = $content->module->trail;
 
-        $trail_user = new TrailUserController;
+        $trail_user = new UserTrailUserController;
 
-        return $trail_user->setTrailUserStatus($trail, $request->content_status);
+        $trail_status_pecentage = $trail_user->setTrailUserStatus($trail, $request->content_status);
 
-
-        // dd($content_user);
-
-        return redirect()->route('content.show', ['trail' => $content->module->trail->id, 'module' => $content->module->id, 'content' => $content]);
+        return view('user.dashboard');
     }
 }

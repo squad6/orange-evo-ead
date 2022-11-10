@@ -1,20 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreContentRequest;
 use App\Models\Content;
 use App\Models\Module;
 use App\Models\Trail;
 use Illuminate\Http\Request;
 
-class ContentController extends Controller
+class AdminContentController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('admin.auth')->except(['index', 'show']);
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +20,7 @@ class ContentController extends Controller
     {
         $contents = $module->contents()->get();
 
-        return view('trail.module.content.index', ['contents' => $contents]);
+        return view('admin.trail.module.content.index', ['contents' => $contents]);
     }
 
     /**
@@ -34,7 +30,7 @@ class ContentController extends Controller
      */
     public function create(Trail $trail, Module $module)
     {
-        return view('trail.module.content.create', ['trail' => $trail, 'module' => $module]);
+        return view('admin.trail.module.content.create', ['trail' => $trail, 'module' => $module]);
     }
 
     /**
@@ -51,7 +47,7 @@ class ContentController extends Controller
             ['module_id' => $module->id],
         );
 
-        return view('trail.module.content.create', ['trail' => $trail, 'module' => $module])->with('message', 'Conteúdo cadastrado com sucesso!');
+        return view('admin.trail.module.content.create', ['trail' => $trail, 'module' => $module])->with('message', 'Conteúdo cadastrado com sucesso!');
     }
 
     /**
@@ -64,7 +60,7 @@ class ContentController extends Controller
     {
         $content = $module->contents()->find($content)->first();
 
-        return view('trail.module.content.show', ['content' => $content]);
+        return view('admin.trail.module.content.show', ['content' => $content]);
     }
 
     /**
@@ -77,7 +73,7 @@ class ContentController extends Controller
     {
         $content = $module->contents()->find($content)->first();
 
-        return view('trail.module.content.edit', ['trail' => $trail, 'content' => $content, 'module' => $module]);
+        return view('admin.trail.module.content.edit', ['trail' => $trail, 'content' => $content, 'module' => $module]);
     }
 
     /**
@@ -93,7 +89,7 @@ class ContentController extends Controller
 
         $content->update($request->all());
 
-        return view('trail.module.content.show', ['module' => $module, 'content'=> $content])->with('message', 'Conteúdo atualizado com sucesso!');
+        return view('admin.trail.module.content.show', ['module' => $module, 'content'=> $content])->with('message', 'Conteúdo atualizado com sucesso!');
     }
 
     /**
@@ -108,6 +104,6 @@ class ContentController extends Controller
 
         $content->delete();
 
-        return redirect()->route('content.index', ['trail' => $trail, 'module' => $module]);
+        return redirect()->route('admin.content.index', ['trail' => $trail, 'module' => $module]);
     }
 }

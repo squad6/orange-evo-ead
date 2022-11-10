@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Controller;
 use App\Models\Trail;
 use App\Models\TrailUser;
 use Illuminate\Support\Facades\Auth;
 
-class TrailUserController extends Controller
+class UserTrailUserController extends Controller
 {
-    public function index()
+    public function index($trail_status_percentage = null)
     {
         $user = Auth::user();
 
         $trails = $user->trails;
 
-        return view('user.dashboard', ['trails' => $trails]);
+        return view('user.dashboard', ['trails' => $trails, 'trail_status' => $trail_status_percentage]);
     }
 
     public function chooseTrail(Trail $trail)
@@ -75,9 +76,13 @@ class TrailUserController extends Controller
             }
         }
 
-        $trail_status_percentage = $number_of_finished_contents * 100 / $number_of_trail_contents;
+        $trail_status_percentage = ($number_of_finished_contents * 100) / $number_of_trail_contents;
 
-        return redirect()->route('user.dashboard');
+        $trail_user->update([
+            'trail_status_percentage' => (int)$trail_status_percentage,
+        ]);
+
+        return $trail_status_percentage;
     }
 
     public function destroy(Trail $trail) {

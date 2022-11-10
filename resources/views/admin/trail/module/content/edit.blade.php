@@ -3,7 +3,7 @@
     <p>{{ $message }}</p>
 @endif
 {{-- {{ dd($content) }} --}}
-<form action="{{ route('content.update', ['trail' => $trail->id, 'module' => $module->id, 'content' => $content->id]) }}" method="POST">
+<form action="{{ route('admin.content.update', ['trail' => $trail->id, 'module' => $module->id, 'content' => $content->id]) }}" method="POST">
     @csrf
     <input name="_method" type="hidden" value="PUT">
     <input type="text" name="title" value="{{ $content->title }}">
@@ -47,7 +47,7 @@
     <button type="submit">Atualizar</button>
 </form>
 
-<form action="{{ route('content.destroy', ['trail' => $trail->id,'module' => $module->id, 'content' => $content->id]) }}" method="POST">
+<form action="{{ route('admin.content.destroy', ['trail' => $trail->id,'module' => $module->id, 'content' => $content->id]) }}" method="POST">
     @csrf
     <input type="hidden" name="_method" value="DELETE">
     <button type="submit">Excluir</button>

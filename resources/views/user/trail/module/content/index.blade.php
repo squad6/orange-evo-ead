@@ -7,7 +7,7 @@
                 {{ $content->title }}
 
                 {{-- {{ dd($content->module->trail) }} --}}
-                <button><a href="{{route('content.show', ['trail' => $content->module->trail->id, 'module' => $content->module->id, 'content' => $content])}}">Acessar</a></button>
+                <button><a href="{{route('user.content.show', ['trail' => $content->module->trail->id, 'module' => $content->module->id, 'content' => $content])}}">Acessar</a></button>
             </li>
             @if (isset(Auth::user()->contents->find($content->id)->pivot->content_status))
                 @if (Auth::user()->contents->find($content->id)->pivot->content_status == 0)

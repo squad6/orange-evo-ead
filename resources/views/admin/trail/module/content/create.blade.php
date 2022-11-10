@@ -2,7 +2,7 @@
 @if (isset($message))
     <p>{{ $message }}</p>
 @endif
-<form action="{{ route('trail.store') }}" method="POST">
+<form action="{{ route('admin.content.store', [$trail->id, $module->id]) }}" method="POST">
     @csrf
     <input type="text" name="title" placeholder="Título">
     @error('title')
@@ -22,11 +22,33 @@
         <span> {{ $message }}</span>
     @enderror
     <br>
-    <input type="text" name="trail_by" placeholder="Criado por">
-    @error('trail_by')
+    <input type="text" name="type" placeholder="Tipo">
+    @error('type')
         <br>
         <span> {{ $message }}</span>
     @enderror
+    <br>
+    <input type="text" name="content_by" placeholder="Conteúdo por">
+    @error('content_by')
+        <br>
+        <span> {{ $message }}</span>
+    @enderror
+    <br>
+    <input type="text" name="link" placeholder="Link">
+    @error('link')
+        <br>
+        <span> {{ $message }}</span>
+    @enderror
+    <br>
+    <br>
+    <input type="text" name="subject" placeholder="subject">
+    @error('subject')
+        <br>
+        <span> {{ $message }}</span>
+    @enderror
+    <br>
+
+
 
     <br>
     <button type="submit">Cadastrar</button>

@@ -548,6 +548,7 @@ class ComposerStaticInit3f251440291834fd744e78df39fc922f
         'App\\Http\\Requests\\StoreTrailRequest' => __DIR__ . '/../..' . '/app/Http/Requests/StoreTrailRequest.php',
         'App\\Models\\Admin' => __DIR__ . '/../..' . '/app/Models/Admin.php',
         'App\\Models\\Content' => __DIR__ . '/../..' . '/app/Models/Content.php',
+        'App\\Models\\ContentUser' => __DIR__ . '/../..' . '/app/Models/ContentUser.php',
         'App\\Models\\Module' => __DIR__ . '/../..' . '/app/Models/Module.php',
         'App\\Models\\Trail' => __DIR__ . '/../..' . '/app/Models/Trail.php',
         'App\\Models\\TrailUser' => __DIR__ . '/../..' . '/app/Models/TrailUser.php',

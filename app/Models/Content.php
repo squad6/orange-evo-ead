@@ -17,6 +17,7 @@ class Content extends Model
         'type',
         'link',
         'content_by',
+        'subject',
     ];
 
     public function module()

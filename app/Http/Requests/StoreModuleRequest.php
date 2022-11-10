@@ -24,8 +24,8 @@ class StoreModuleRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'description' => 'required',
+            'title' => 'required|max:80',
+            'description' => 'required|max:250',
             'time' => 'required',
             // 'trail_id' => 'required',
         ];
@@ -40,6 +40,8 @@ class StoreModuleRequest extends FormRequest
     {
         return [
             'required' => 'Este campo é obrigatório',
+            'title.max' => 'O título deve ter no máximo 80 caracteres',
+            'description.max' => 'A descrição deve ter no máximo 250 caracteres',
         ];
     }
 }

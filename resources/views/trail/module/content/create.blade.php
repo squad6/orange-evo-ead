@@ -35,11 +35,20 @@
     @enderror
     <br>
     <input type="text" name="link" placeholder="Link">
-    @error('content_by')
+    @error('link')
         <br>
         <span> {{ $message }}</span>
     @enderror
     <br>
+    <br>
+    <input type="text" name="subject" placeholder="subject">
+    @error('subject')
+        <br>
+        <span> {{ $message }}</span>
+    @enderror
+    <br>
+
+
 
     <br>
     <button type="submit">Cadastrar</button>

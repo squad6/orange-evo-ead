@@ -24,12 +24,13 @@ class StoreContentRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|unique:contents',
-            'description' => 'required',
+            'title' => 'required|unique:contents|max:120',
+            'description' => 'required|max:250',
             'time' => 'required',
             'type' => 'required',
             'content_by' => 'required',
-            'link' => 'required'
+            'link' => 'required',
+            'subject' => 'required|max:30',
             // 'module_id' => 'required',
         ];
     }
@@ -44,6 +45,9 @@ class StoreContentRequest extends FormRequest
         return [
             'required' => 'Este campo é obrigatório',
             'title.unique' => 'Já existe um conteúdo com este nome',
+            'title.max' => 'O título deve ter no máximo 120 caracteres',
+            'description.max' => 'A descrição deve ter no máximo 250 caracteres',
+            'subject.max' => 'O tema deve ter no máximo 30 caracteres',
         ];
     }
 }

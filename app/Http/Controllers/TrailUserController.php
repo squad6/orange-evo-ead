@@ -2,11 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ContentUser;
 use App\Models\Trail;
 use App\Models\TrailUser;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class TrailUserController extends Controller

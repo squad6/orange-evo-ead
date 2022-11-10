@@ -39,6 +39,7 @@ return array(
     'App\\Http\\Requests\\StoreTrailRequest' => $baseDir . '/app/Http/Requests/StoreTrailRequest.php',
     'App\\Models\\Admin' => $baseDir . '/app/Models/Admin.php',
     'App\\Models\\Content' => $baseDir . '/app/Models/Content.php',
+    'App\\Models\\ContentUser' => $baseDir . '/app/Models/ContentUser.php',
     'App\\Models\\Module' => $baseDir . '/app/Models/Module.php',
     'App\\Models\\Trail' => $baseDir . '/app/Models/Trail.php',
     'App\\Models\\TrailUser' => $baseDir . '/app/Models/TrailUser.php',

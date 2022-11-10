@@ -24,8 +24,8 @@ class StoreTrailRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|unique:trails',
-            'description' => 'required',
+            'title' => 'required|unique:trails|max:80',
+            'description' => 'required|max:250',
             'time' => 'required',
             'trail_by' => 'required',
         ];
@@ -41,6 +41,8 @@ class StoreTrailRequest extends FormRequest
         return [
             'required' => 'Este campo é obrigatório',
             'title.unique' => 'Já existe uma trilha com este nome',
+            'title.max' => 'O título deve ter no máximo 80 caracteres',
+            'description.max' => 'A descrição deve ter no máximo 250 caracteres',
         ];
     }
 }

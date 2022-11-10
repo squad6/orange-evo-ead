@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'birth_date',
     ];
 
     /**
@@ -41,4 +42,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function trails()
+    {
+        return $this->belongsToMany(Trail::class, 'trail_users')->withPivot(['trail_id','user_id','trail_status', 'trail_status_percentage']);
+    }
+
+    public function contents()
+    {
+        return $this->belongsToMany(Content::class, 'content_users')->withPivot(['content_id','user_id','content_status']);
+    }
 }

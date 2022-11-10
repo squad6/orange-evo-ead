@@ -18,12 +18,12 @@ class AdminController extends Controller
 
     function registerView()
     {
-        return view('admin.register');
+        return view('admin.auth.register');
     }
 
     public function loginView()
     {
-        return view('admin.login');
+        return view('admin.auth.login');
     }
 
     public function login(Request $request)
@@ -54,6 +54,6 @@ class AdminController extends Controller
             'updated_at' => Carbon::now(),
         ]);
 
-        return redirect()->route('admin.home')->with('message', 'Administrador criado com sucesso');
+        return redirect()->route('admin.dashboard')->with('message', 'Administrador criado com sucesso');
     }
 }

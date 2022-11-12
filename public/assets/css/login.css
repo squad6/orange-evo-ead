@@ -41,6 +41,7 @@ form.user .form-control-user {
     font-style: normal;
     font-size: 16px;
     border-radius: 8px;
+    line-height: 0.7;
 }
 
 .col-form-label {
@@ -50,8 +51,10 @@ form.user .form-control-user {
     font-family: 'Inter';
     font-style: normal;
     font-size: inherit;
-    line-height: 1.5;
+    line-height: 0.01;
     padding-right: 0rem;
     padding-left: 0rem;
     color: #000000;
 }
+
+

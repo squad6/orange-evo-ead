@@ -78,7 +78,7 @@ class AdminTrailController extends Controller
     {
         $trail->update($request->all());
 
-        return view('admin.trail.show', ['trail'=> $trail])->with('message', 'Trilha atualizada com sucesso!');
+        return view('admin.trail.index', ['trails' => Trail::all()])->with('message', 'Trilha atualizada com sucesso!');
     }
 
     /**
@@ -91,6 +91,6 @@ class AdminTrailController extends Controller
     {
         $trail->delete();
 
-        return redirect()->route('admin.trail.index');
+        return view('admin.trail.index', ['trails' => Trail::all()])->with('message', 'Trilha excluida com sucesso!');
     }
 }

@@ -13,7 +13,9 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $admins = Admin::whereNot('id', Auth::guard('admin')->user()->id)->get();
+
+        return view('admin.dashboard', ['admins' => $admins]);
     }
 
     function registerView()
@@ -55,5 +57,12 @@ class AdminController extends Controller
         ]);
 
         return redirect()->route('admin.dashboard')->with('message', 'Administrador criado com sucesso');
+    }
+
+    public function destroy(Admin $admin)
+    {
+        $admin->delete();
+
+        return redirect()->route('admin.dashboard');
     }
 }

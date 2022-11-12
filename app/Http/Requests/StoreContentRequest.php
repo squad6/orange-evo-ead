@@ -45,8 +45,8 @@ class StoreContentRequest extends FormRequest
         return [
             'title.required' => 'O campo Título é obrigatório',
             'description.required' => 'O campo Descrição é obrigatório',
-            'time.required' => 'O campo Tempo de duração é obrigatório',
-            'type.required' => 'O campo Tipo é obrigatório',
+            'time.required' => 'O campo Tempo Estimado é obrigatório',
+            'type.required' => 'O campo Assunto é obrigatório',
             'content_by.required' => 'O campo Conteúdo por é obrigatório',
             'link.required' => 'O campo Link é obrigatório',
             'subject.required' => 'O campo Tema é obrigatório',

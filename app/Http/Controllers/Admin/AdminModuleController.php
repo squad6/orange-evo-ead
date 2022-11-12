@@ -23,16 +23,6 @@ class AdminModuleController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Trail $trail)
-    {
-        return view('admin.trail.module.create', ['trail' => $trail]);
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\StoreModuleRequest  $request
@@ -49,32 +39,6 @@ class AdminModuleController extends Controller
         $modules = $trail->modules()->get();
 
         return view('admin.trail.module.index', ['trail' => $trail, 'modules' => $modules])->with('message', 'Módulo Cadastrado com sucesso!');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Module  $module
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Trail $trail, Module $module)
-    {
-        $module = $trail->modules()->find($module)->first();
-
-        return view('admin.trail.module.show', ['module' => $module]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Module  $module
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Trail $trail, Module $module)
-    {
-        $module = $trail->modules()->find($module)->first();
-
-        return view('admin.trail.module.edit', ['module' => $module, 'trail' => $trail]);
     }
 
     /**
@@ -107,6 +71,8 @@ class AdminModuleController extends Controller
 
         $module->delete();
 
-        return redirect()->route('admin.module.index', ['trail' => $trail]);
+        $modules = $trail->modules()->get();
+
+        return view('admin.trail.module.index', ['trail' => $trail, 'modules' => $modules])->with('message', 'Módulo excluído com sucesso!');
     }
 }

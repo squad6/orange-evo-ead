@@ -41,7 +41,7 @@ class StoreTrailRequest extends FormRequest
         return [
             'title.required' => 'O campo Título é obrigatório',
             'description.required' => 'O campo Descrição é obrigatório',
-            'time.required' => 'O campo Tempo de duração é obrigatório',
+            'time.required' => 'O campo Tempo estimado é obrigatório',
             'trail_by.required' => 'O campo Trilha por é obrigatório',
             'title.unique' => 'Já existe uma trilha com este nome',
             'title.max' => 'O título deve ter no máximo 80 caracteres',

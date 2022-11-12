@@ -1,10 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('content')
-
-
     @if (isset($contents))
-    <a class="btn btn-primary" href="{{ route('admin.module.index', ['trail' => $trail]) }}">Voltar</a>
         @error('title')
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 {{ $message }}
@@ -80,21 +77,23 @@
             </div>
         @endif
 
-
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createContentModal">
-            Adicionar conteúdo
-        </button>
+        <div class="d-flex justify-content-between mb-4">
+            <a class="btn btn-primary" href="{{ route('admin.module.index', ['trail' => $trail]) }}">Voltar</a>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createContentModal">
+                Adicionar conteúdo
+            </button>
+        </div>
         <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Título</th>
                     <th scope="col">Descrição</th>
                     <th scope="col">Duração</th>
-                    <th scope="col">Tipo</th>
+                    <th scope="col">Assunto</th>
                     <th scope="col">Conteúdo por</th>
                     <th scope="col">Tema</th>
                     <th scope="col">Link</th>
-                    <th scope="col">Ação</th>
+                    <th scope="col" style="text-align: right">Ação</th>
                 </tr>
             </thead>
             <tbody>
@@ -108,26 +107,27 @@
                         <td>{{ $content->subject }}</td>
                         <td>{{ $content->link }}</td>
                         <td>
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                data-bs-target="#updateContentModal" data-bs-trail_id="{{ $trail->id }}"
-                                data-bs-module_id="{{ $module->id }}"
-                                data-bs-content_id="{{ $content->id }}"
-                                data-bs-content_title="{{ $content->title }}"
-                                data-bs-content_description="{{ $content->description }}"
-                                data-bs-content_time="{{ $content->time }}"
-                                data-bs-content_type="{{ $content->type }}"
-                                data-bs-content_by="{{ $content->content_by }}"
-                                data-bs-content_subject="{{ $content->subject }}"
-                                data-bs-content_link="{{ $content->link }}">
-                                Editar
-                            </button>
-                            <form id="trail_form_delete"
-                                action="{{ route('admin.content.destroy', ['trail' => $trail, 'module' => $module, 'content' => $content]) }}"
-                                method="POST">
-                                @csrf
-                                <input type="hidden" name="_method" value="DELETE">
-                                <button class="btn btn-primary" type="submit">Excluir</button>
-                            </form>
+                            <div class="d-flex justify-content-end">
+                                <button type="button" class="btn btn-primary mr-2" data-bs-toggle="modal"
+                                    data-bs-target="#updateContentModal" data-bs-trail_id="{{ $trail->id }}"
+                                    data-bs-module_id="{{ $module->id }}" data-bs-content_id="{{ $content->id }}"
+                                    data-bs-content_title="{{ $content->title }}"
+                                    data-bs-content_description="{{ $content->description }}"
+                                    data-bs-content_time="{{ $content->time }}"
+                                    data-bs-content_type="{{ $content->type }}"
+                                    data-bs-content_by="{{ $content->content_by }}"
+                                    data-bs-content_subject="{{ $content->subject }}"
+                                    data-bs-content_link="{{ $content->link }}">
+                                    Editar
+                                </button>
+                                <form id="trail_form_delete"
+                                    action="{{ route('admin.content.destroy', ['trail' => $trail, 'module' => $module, 'content' => $content]) }}"
+                                    method="POST">
+                                    @csrf
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <button class="btn btn-danger" type="submit">Excluir</button>
+                                </form>
+                            </div>
                         </td>
 
                     </tr>
@@ -135,16 +135,13 @@
             </tbody>
         </table>
 
-
-
-
-        {{-- Modal atualizar trail --}}
+        {{-- Modal atualizar conteudo --}}
         <div class="modal fade" id="updateContentModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
             aria-labelledby="updateContentModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="updateContentModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="updateContentModalLabel">Atualizar Conteúdo</h5>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -153,23 +150,34 @@
                         <form id="updateContentForm" method="POST">
                             @csrf
                             <input name="_method" type="hidden" value="PUT">
-                            <input id="title" type="text" name="title">
-
-                            <br>
-                            <input id="description" type="text" name="description">
-
-                            <br>
-                            <input id="time" type="time" name="time">
-                            <br>
-                            <input id="type" type="text" name="type">
-                            <br>
-                            <input id="content_by" type="text" name="content_by">
-                            <br>
-                            <input id="subject" type="text" name="subject">
-                            <br>
-                            <input id="link" type="text" name="link">
-
-                            <br>
+                            <div class="form-group">
+                                <label for="title" class="col-form-label">Título:</label>
+                                <input type="text" class="form-control" id="title" name="title">
+                            </div>
+                            <div class="form-group">
+                                <label for="description" class="col-form-label">Descrição:</label>
+                                <input type="text" class="form-control" id="description" name="description">
+                            </div>
+                            <div class="form-group">
+                                <label for="time" class="col-form-label">Tempo Estimado:</label>
+                                <input type="time" class="form-control" id="time" name="time">
+                            </div>
+                            <div class="form-group">
+                                <label for="type" class="col-form-label">Assunto:</label>
+                                <input type="text" class="form-control" id="type" name="type">
+                            </div>
+                            <div class="form-group">
+                                <label for="content_by" class="col-form-label">Conteúdo por:</label>
+                                <input type="text" class="form-control" id="content_by" name="content_by">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject" class="col-form-label">Tema:</label>
+                                <input type="text" class="form-control" id="subject" name="subject">
+                            </div>
+                            <div class="form-group">
+                                <label for="link" class="col-form-label">Link:</label>
+                                <input type="text" class="form-control" id="link" name="link">
+                            </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
                                 <button type="submit" class="btn btn-primary">Atualizar</button>
@@ -186,7 +194,7 @@
             <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="createContentModalLabel">Modal title</h5>
+                        <h5 class="modal-title" id="createContentModalLabel">Cadastrar Novo Conteúdo</h5>
                         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -195,7 +203,6 @@
                         <form id="createContentModal" method="POST"
                             action="{{ route('admin.content.store', ['trail' => $trail, 'module' => $module]) }}">
                             @csrf
-
                             <div class="form-group">
                                 <label for="title" class="col-form-label">Título:</label>
                                 <input type="text" class="form-control" id="title" name="title">
@@ -205,11 +212,11 @@
                                 <input type="text" class="form-control" id="description" name="description">
                             </div>
                             <div class="form-group">
-                                <label for="time" class="col-form-label">Tempo de duração:</label>
+                                <label for="time" class="col-form-label">Tempo Estimado:</label>
                                 <input type="time" class="form-control" id="time" name="time">
                             </div>
                             <div class="form-group">
-                                <label for="type" class="col-form-label">Tipo:</label>
+                                <label for="type" class="col-form-label">Assunto:</label>
                                 <input type="text" class="form-control" id="type" name="type">
                             </div>
                             <div class="form-group">
@@ -227,7 +234,7 @@
 
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                                <button type="submit" class="btn btn-primary">cadastrar</button>
+                                <button type="submit" class="btn btn-primary">Cadastrar</button>
                             </div>
                         </form>
                     </div>
@@ -239,6 +246,7 @@
 
 @section('script')
     <script>
+        // Script para envio do id correto para alterações de registro
         var updateContentModal = document.getElementById('updateContentModal')
         updateContentModal.addEventListener('show.bs.modal', function(event) {
             // Button that triggered the modal
@@ -291,5 +299,3 @@
         })
     </script>
 @endsection
-
-

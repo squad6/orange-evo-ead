@@ -56,7 +56,7 @@ class AdminController extends Controller
             'updated_at' => Carbon::now(),
         ]);
 
-        return redirect()->route('admin.dashboard')->with('message', 'Administrador criado com sucesso');
+        return redirect()->route('admin.dashboard');
     }
 
     public function destroy(Admin $admin)

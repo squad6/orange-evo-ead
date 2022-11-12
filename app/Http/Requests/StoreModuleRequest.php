@@ -41,7 +41,7 @@ class StoreModuleRequest extends FormRequest
         return [
             'title.required' => 'O campo Título é obrigatório',
             'description.required' => 'O campo Descrição é obrigatório',
-            'time.required' => 'O campo Tempo de duração é obrigatório',
+            'time.required' => 'O campo Duração Estimada é obrigatório',
             'title.max' => 'O título deve ter no máximo 80 caracteres',
             'description.max' => 'A descrição deve ter no máximo 250 caracteres',
         ];

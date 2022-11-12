@@ -38,6 +38,7 @@ Route::prefix('admin')->group(function () {
 
     Route::get('/register', [AdminController::class, 'registerView'])->name('admin.register.view')->middleware('admin.auth');
     Route::post('/resgiter', [AdminController::class, 'create'])->name('admin.register')->middleware('admin.auth');
+    Route::delete('{admin}/delete', [AdminController::class, 'destroy'])->name('admin.destroy')->middleware('admin.auth');
 
     Route::get('/dashboard', [AdminController::class, 'index'])->name('admin.dashboard')->middleware('admin.auth');
 

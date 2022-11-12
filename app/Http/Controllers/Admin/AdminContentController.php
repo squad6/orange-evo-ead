@@ -20,7 +20,7 @@ class AdminContentController extends Controller
     {
         $contents = $module->contents()->get();
 
-        return view('admin.trail.module.content.index', ['contents' => $contents]);
+        return view('admin.trail.module.content.index', ['trail' => $trail, 'module' => $module, 'contents' => $contents]);
     }
 
     /**
@@ -47,7 +47,9 @@ class AdminContentController extends Controller
             ['module_id' => $module->id],
         );
 
-        return view('admin.trail.module.content.create', ['trail' => $trail, 'module' => $module])->with('message', 'Conteúdo cadastrado com sucesso!');
+        $contents = $module->contents()->get();
+
+        return view('admin.trail.module.content.index', ['trail' => $trail, 'module' => $module, 'contents' => $contents])->with('message', 'Conteúdo cadastrado com sucesso!');
     }
 
     /**
@@ -89,7 +91,9 @@ class AdminContentController extends Controller
 
         $content->update($request->all());
 
-        return view('admin.trail.module.content.show', ['module' => $module, 'content'=> $content])->with('message', 'Conteúdo atualizado com sucesso!');
+        $contents = $module->contents()->get();
+
+        return view('admin.trail.module.content.index', ['trail' => $trail, 'module' => $module, 'contents' => $contents])->with('message', 'Conteúdo atualizado com sucesso!');
     }
 
     /**

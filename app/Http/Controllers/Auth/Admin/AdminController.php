@@ -43,7 +43,7 @@ class AdminController extends Controller
     {
         Auth::guard('admin')->logout();
 
-        return redirect()->route('admin.login')->with('message', 'Logout efetuado com sucesso');
+        return redirect()->route('admin.login.view')->with('message', 'Logout efetuado com sucesso');
     }
 
     public function create(Request $request)

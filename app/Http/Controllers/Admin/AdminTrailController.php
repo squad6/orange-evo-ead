@@ -42,7 +42,7 @@ class AdminTrailController extends Controller
         // As validações estão sendo feitas no StoreTrailRequest
         Trail::create($request->all());
 
-        return view('admin.trail.create')->with('message', 'Trilha cadastrada com sucesso!');
+        return view('admin.trail.index', ['trails' => Trail::all()])->with('message', 'Trilha cadastrada com sucesso!');
     }
 
     /**

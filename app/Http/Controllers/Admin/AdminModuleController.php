@@ -19,7 +19,7 @@ class AdminModuleController extends Controller
     {
         $modules = $trail->modules()->get();
 
-        return view('admin.trail.module.index', ['modules' => $modules]);
+        return view('admin.trail.module.index', ['trail'=> $trail, 'modules' => $modules]);
     }
 
     /**
@@ -46,7 +46,9 @@ class AdminModuleController extends Controller
             ['trail_id' => $trail->id],
         );
 
-        return view('admin.trail.module.create', ['trail' => $trail])->with('message', 'Módulo cadastrado com sucesso');
+        $modules = $trail->modules()->get();
+
+        return view('admin.trail.module.index', ['trail' => $trail, 'modules' => $modules])->with('message', 'Módulo Cadastrado com sucesso!');
     }
 
     /**
@@ -88,7 +90,9 @@ class AdminModuleController extends Controller
 
         $module->update($request->all());
 
-        return view('admin.trail.module.show', ['trail' => $trail, 'module'=> $module])->with('message', 'Módulo atualizado com sucesso!');
+        $modules = $trail->modules()->get();
+
+        return view('admin.trail.module.index', ['trail' => $trail, 'modules' => $modules])->with('message', 'Módulo atualizado com sucesso!');
     }
 
     /**

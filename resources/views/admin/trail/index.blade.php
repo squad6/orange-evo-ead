@@ -4,7 +4,58 @@
 
 
     @if (isset($trails))
-    <button class="btn btn-primary" type="submit">Nova Trilha</button>
+        <a class="btn btn-primary" href="{{ route('admin.dashboard') }}">Voltar</a>
+        @error('title')
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+        @enderror
+        @error('description')
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+        @enderror
+        @error('time')
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+        @enderror
+        @error('trail_by')
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ $message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+        @enderror
+
+        @if (isset($message))
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ $message }}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+
+            </div>
+        @endif
+
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createTrailModal">
+            Adicionar trilha
+        </button>
         <table class="table">
             <thead>
                 <tr>
@@ -21,7 +72,7 @@
                         <td>{{ $trail->description }}</td>
                         <td>{{ $trail->time }}</td>
                         <td>
-                            <a href="{{ route('admin.module.index', ['trail' => $trail]) }}">Módulos</a>
+                            <a class="btn btn-primary" href="{{ route('admin.module.index', ['trail' => $trail]) }}">Módulos</a>
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                 data-bs-target="#updateTrailModal" data-bs-trail_id="{{ $trail->id }}"
                                 data-bs-trail_title="{{ $trail->title }}"
@@ -41,31 +92,22 @@
                 @endforeach
             </tbody>
         </table>
-        {{-- <ul>
-        @foreach ($trails as $trail)
-            <li>
-                {{ $trail->title }}
-                <button><a href="{{ route('admin.trail.show', $trail->id) }}">Detalhes</a></button>
-            </li>
-        @endforeach
-    </ul> --}}
 
 
-        @if (isset($message))
-            <p>{{ $message }}</p>
-        @endif
 
-        {{-- Modal cadastro de novo admin --}}
-        <div class="modal fade" id="updateTrailModal" tabindex="-1" aria-labelledby="updateTrailModal" aria-hidden="true">
-            <div class="modal-dialog">
+
+        {{-- Modal atualizar trail --}}
+        <div class="modal fade" id="updateTrailModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="updateTrailModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="updateTrailModal">Registro de novo Admin</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <h5 class="modal-title" id="updateTrailModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-
-
-                    <div class="card-body">
+                    <div class="modal-body">
                         <form id="updateTrailForm" method="POST">
                             @csrf
                             <input name="_method" type="hidden" value="PUT">
@@ -82,7 +124,54 @@
 
 
                             <br>
-                            <button type="submit">Atualizar</button>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                <button type="submit" class="btn btn-primary">Atualizar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Modal nova trail --}}
+        <div class="modal fade" id="createTrailModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="createTrailModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createTrailModalLabel">Modal title</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="createTrailForm" method="POST" action="{{ route('admin.trail.store') }}">
+                            @csrf
+
+                            <div class="form-group">
+                                <label for="title" class="col-form-label">Título:</label>
+                                <input type="text" class="form-control" id="title" name="title">
+                            </div>
+                            <div class="form-group">
+                                <label for="description" class="col-form-label">Descrição:</label>
+                                <input type="text" class="form-control" id="description" name="description">
+                            </div>
+                            <div class="form-group">
+                                <label for="time" class="col-form-label">Tempo de duração:</label>
+                                <input type="time" class="form-control" id="time" name="time">
+                            </div>
+                            <div class="form-group">
+                                <label for="trail_by" class="col-form-label">Trilha por:</label>
+                                <input type="text" class="form-control" id="trail_by" name="trail_by">
+                            </div>
+
+
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                <button type="submit" class="btn btn-primary">cadastrar</button>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -119,7 +208,6 @@
 
             var trailByInput = updateTrailModal.querySelector('#trail_by')
             trailByInput.value = trail_by
-
 
             var form = updateTrailModal.querySelector('#updateTrailForm')
             form.action = "{{ route('admin.trail.update', '') }}" + "/" + trail_id;

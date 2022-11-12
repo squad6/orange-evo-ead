@@ -52,11 +52,7 @@
                                 @enderror
                             </div>
 
-                            <div class="form-group">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirmar senha:') }}</label>
-                                <input type="password" class="form-control form-control-user" id="password-confirm" name="password_confirmation" placeholder="********"
-                                    required autocomplete="new-password">
-                            </div>
+
 
                             <button type="submit" class="btn btn-danger btn-user btn-block">
                                 {{ __('Register') }}

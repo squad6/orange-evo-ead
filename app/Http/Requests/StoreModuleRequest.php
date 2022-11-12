@@ -39,7 +39,9 @@ class StoreModuleRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => 'Este campo é obrigatório',
+            'title.required' => 'O campo Título é obrigatório',
+            'description.required' => 'O campo Descrição é obrigatório',
+            'time.required' => 'O campo Tempo de duração é obrigatório',
             'title.max' => 'O título deve ter no máximo 80 caracteres',
             'description.max' => 'A descrição deve ter no máximo 250 caracteres',
         ];

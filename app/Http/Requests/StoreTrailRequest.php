@@ -39,7 +39,10 @@ class StoreTrailRequest extends FormRequest
     public function messages()
     {
         return [
-            'required' => 'Este campo é obrigatório',
+            'title.required' => 'O campo Título é obrigatório',
+            'description.required' => 'O campo Descrição é obrigatório',
+            'time.required' => 'O campo Tempo estimado é obrigatório',
+            'trail_by.required' => 'O campo Trilha por é obrigatório',
             'title.unique' => 'Já existe uma trilha com este nome',
             'title.max' => 'O título deve ter no máximo 80 caracteres',
             'description.max' => 'A descrição deve ter no máximo 250 caracteres',

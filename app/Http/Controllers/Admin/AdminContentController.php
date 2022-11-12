@@ -20,17 +20,7 @@ class AdminContentController extends Controller
     {
         $contents = $module->contents()->get();
 
-        return view('admin.trail.module.content.index', ['contents' => $contents]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Trail $trail, Module $module)
-    {
-        return view('admin.trail.module.content.create', ['trail' => $trail, 'module' => $module]);
+        return view('admin.trail.module.content.index', ['trail' => $trail, 'module' => $module, 'contents' => $contents]);
     }
 
     /**
@@ -47,33 +37,9 @@ class AdminContentController extends Controller
             ['module_id' => $module->id],
         );
 
-        return view('admin.trail.module.content.create', ['trail' => $trail, 'module' => $module])->with('message', 'Conteúdo cadastrado com sucesso!');
-    }
+        $contents = $module->contents()->get();
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Content  $content
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Trail $trail, Module $module, Content $content)
-    {
-        $content = $module->contents()->find($content)->first();
-
-        return view('admin.trail.module.content.show', ['content' => $content]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Content  $content
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Trail $trail, Module $module, Content $content)
-    {
-        $content = $module->contents()->find($content)->first();
-
-        return view('admin.trail.module.content.edit', ['trail' => $trail, 'content' => $content, 'module' => $module]);
+        return view('admin.trail.module.content.index', ['trail' => $trail, 'module' => $module, 'contents' => $contents])->with('message', 'Conteúdo cadastrado com sucesso!');
     }
 
     /**
@@ -89,7 +55,9 @@ class AdminContentController extends Controller
 
         $content->update($request->all());
 
-        return view('admin.trail.module.content.show', ['module' => $module, 'content'=> $content])->with('message', 'Conteúdo atualizado com sucesso!');
+        $contents = $module->contents()->get();
+
+        return view('admin.trail.module.content.index', ['trail' => $trail, 'module' => $module, 'contents' => $contents])->with('message', 'Conteúdo atualizado com sucesso!');
     }
 
     /**
@@ -104,6 +72,8 @@ class AdminContentController extends Controller
 
         $content->delete();
 
-        return redirect()->route('admin.content.index', ['trail' => $trail, 'module' => $module]);
+        $contents = $module->contents()->get();
+
+        return view('admin.trail.module.content.index', ['trail' => $trail, 'module' => $module, 'contents' => $contents])->with('message', 'Conteúdo excluído com sucesso!');
     }
 }

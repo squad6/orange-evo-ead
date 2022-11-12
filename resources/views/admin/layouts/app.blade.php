@@ -20,6 +20,8 @@
         <link href="{{ url('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
         <link href="{{ url('assets/css/login-admin.css') }}" rel="stylesheet">
 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+
     </head>
 
     <body class="bg-gradient-primary">
@@ -77,6 +79,8 @@
             @yield('content')
         </main>
 
+        @yield('script')
+
         <!-- Bootstrap core JavaScript-->
         <script src="{{ url('assets/vendor/jquery/jquery.min.js') }}"></script>
         <script src="{{ url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
@@ -86,6 +90,8 @@
 
         <!-- Custom scripts for all pages-->
         <script src="{{ url('assets/js/sb-admin-2.min.js') }}"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 
     </body>
 

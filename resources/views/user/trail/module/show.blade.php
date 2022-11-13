@@ -102,7 +102,7 @@
                                     <td>{{$content->content_by}}</td>
                                     <td>{{$content->subject}}</td>
                                     <td>{{$content->type}}</td>
-                                    <td><a href="{{$content->link}}">{{$content->link}}</a></td>
+                                    <td><a target="_blank" href="{{$content->link}}">{{$content->link}}</a></td>
                                 </tr>
                             @endforeach
                             </tbody>

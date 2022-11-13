@@ -52,4 +52,33 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Content::class, 'content_users')->withPivot(['content_id','user_id','content_status']);
     }
+
+    public function getTrailUserStatusPercentage(Trail $trail): float|int
+    {
+
+        $trail_user =  TrailUser::where('trail_id', $trail->id)
+            ->where('user_id', $this->id);
+
+        return $trail_user->first()->trail_status_percentage;
+    }
+
+    public function getModuleStatusPercentage(Module $module): float|int
+    {
+        $number_of_trail_contents = $module->contents->count();
+        if ($number_of_trail_contents == 0) {
+            return 100;
+        }
+        $user_module_contents = [];
+        foreach ($module->contents as $content) {
+            array_push($user_module_contents, $content->users->find($this->id));
+        }
+        $user_module_contents = array_filter($user_module_contents);
+        $number_of_finished_contents = 0;
+        foreach ($user_module_contents as $user_trail_content) {
+            if ($user_trail_content->pivot->content_status == 1) {
+                $number_of_finished_contents++;
+            }
+        }
+        return round(($number_of_finished_contents * 100) / $number_of_trail_contents);
+    }
 }

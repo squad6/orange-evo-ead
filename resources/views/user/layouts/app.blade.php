@@ -19,12 +19,10 @@
         <!-- Custom styles for this template-->
         <link href="{{ url('assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
         <link href="{{ url('assets/css/login.css') }}" rel="stylesheet">
-
+        @stack('head')
     </head>
 
     <body class="bg-gradient-primary">
-
-
         <main>
             @yield('content')
         </main>
@@ -38,6 +36,7 @@
         <!-- Custom scripts for all pages-->
         <script src="{{ url('assets/js/sb-admin-2.min.js') }}"></script>
 
+        @stack('body')
     </body>
 
     </html>

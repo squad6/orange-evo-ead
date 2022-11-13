@@ -25,7 +25,7 @@
     <body class="bg-gradient-primary">
 
 
-        <main class="py-4">
+        <main>
             @yield('content')
         </main>
         <!-- Bootstrap core JavaScript-->

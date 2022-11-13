@@ -40,6 +40,6 @@ class UserContentUserController extends Controller
 
         $trail_status_pecentage = $trail_user->setTrailUserStatus($trail, $request->content_status);
 
-        return view('user.dashboard');
+        return view('user.trail.module.show', ['trail' => $trail, 'module' => $content->module]);
     }
 }

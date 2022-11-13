@@ -28,8 +28,6 @@ class UserModuleController extends Controller
      */
     public function show(Trail $trail, Module $module)
     {
-        $module = $trail->modules()->find($module)->first();
-
         return view('user.trail.module.show', ['trail' => $trail, 'module' => $module]);
     }
 }

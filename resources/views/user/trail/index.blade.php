@@ -14,7 +14,7 @@
                 <div class="row">
                     <div class="col-xl-5 col-md-6 mb-4">
                         <div class="card-body">
-                            <p>Explore conhecimentos que estão transformando indústrias, negócios e vidas através de
+                            <p>Explore conhecimentos que transformam indústrias, negócios e vidas através de
                                 trilhas gratuitas em Desenvolvimento Full-stack, UX/UI Design, QA e muito mais!
                             </p>
                         </div>
@@ -35,7 +35,9 @@
                             <!-- Card Header - Dropdown -->
                             <div
                                 class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h5 class="m-0 font-weight-bold" style="color: #36357E">{{ $trail->title }}</h5>
+                                <h4 class="m-0 font-weight-bold" style="color: #36357E">
+                                    <i class="fas fa-fw fa-stream"></i>
+                                    {{ $trail->title }}</h4>
                             </div>
                             <!-- Card Body -->
                             <div class="card-body" style="color:#000;">
@@ -44,10 +46,11 @@
                                         {{ $trail->description }}
                                     </p>
                                 </div>
+                                <p> Trilha disponibilizada por {{$trail->trail_by}}</p>
                                 <div class="navbar navbar-expand navbar-light bg-light">
-                                    <h6>
+                                    <h6 style="padding-right: 1%">
                                         <i class="fas fa-fw fa-puzzle-piece"></i>
-                                        {{sizeof($trail->modules)}} Módulos
+                                        {{sizeof($trail->modules)}} Módulo(s)
                                     </h6>
                                     <h6 class="">
                                         <i class="fas fa-fw fa-clock"></i>
@@ -61,6 +64,15 @@
                                            href="{{ route('user.trail.show', $trail->id) }}">Detalhes</a>
                                     @endif
                                 </div>
+                                @if (isset($trail->users->find(Auth::user()->id)->pivot))
+                                    <h5 class="font-weight-bold" style="color: #36357E">Progresso da Trilha <span
+                                            class="float-right">{{ $trail->users->find(Auth::user())->getTrailUserStatusPercentage($trail)}}%</span>
+                                    </h5>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar" role="progressbar" style="width: {{ $trail->users->find(Auth::user())->getTrailUserStatusPercentage($trail)}}%;
+                                        background-color: #FE4400" aria-valuenow="{{ $trail->users->find(Auth::user())->getTrailUserStatusPercentage($trail)}}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>

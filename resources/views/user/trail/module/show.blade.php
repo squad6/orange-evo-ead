@@ -1,13 +1,21 @@
 @extends('user.layouts.home')
+@push('head')
+    <link href="{{ url('assets/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet">
+@endpush
+
+@push('body')
+    <script src="{{url('assets/vendor/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{url('assets/vendor/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{url('assets/js/demo/datatables-demo.js')}}"></script>
+@endpush
 
 @section('page-content')
     <div class="container-fluid">
-
         <!-- Card Title -->
         <div class="card shadow mb-4" style="background-color: #FFDACC; color: black">
             <div class="py-3">
                 <h2 class="m-0 font-weight-bold" style="padding-left: 1%; color: #36357E;">
-                    <i class="fas fa-fw fa-stream"></i>
+                    <i class="fas fa-fw fa-puzzle-piece"></i>
                     {{ $module->title }}
                 </h2>
                 <div class="row">
@@ -21,60 +29,88 @@
                 </div>
             </div>
         </div>
+        <div class="navbar-expand">
+            <a class="btn nav-item" style="background-color: #FE4400; color: white;"
+               href="{{ route('user.trail.show', ['trail' => $module->trail->id]) }}">Voltar</a>
+        </div>
+        <br>
         <!-- End Card Title -->
-
-        <!-- Content Row -->
-
-        @if(isset($module->contents) and sizeof($module->contents) > 0)
-            <div class="row">
-                @foreach($module->contents as $key => $content)
-                    <!-- Pie Chart -->
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div
-                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h5 class="m-0 font-weight-bold" style="color: #36357E">{{ $content->title }}</h5>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body" style="color:#000;">
-                                <div class="chart-pie pt-4 pb-2">
-                                    <p>
-                                        {{ $content->description }}
-                                    </p>
-                                </div>
-                                <div class="navbar navbar-expand navbar-light bg-light">
-                                    <h6 class="">
-                                        <i class="fas fa-fw fa-clock"></i>
-                                        {{$content->time}}
-                                    </h6>
-{{--                                    <a class="btn" style="background-color: #FE4400; color: white; margin-left: auto"--}}
-{{--                                       href="{{ route('user.module.show', ['trail' => $module->id, 'module' => $module->id]) }}">Continuar</a>--}}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h4 class="m-0 font-weight-bold" style="color: #36357E;">
+                    <i class="fa fa-fw fa-book"></i>
+                    Conteúdos
+                </h4>
             </div>
-        @else
-            <div class="card o-hidden border-0 my-5">
-                <div class="card-body p-0">
-                    <div class="row bg-light" style="justify-content: center;">
-                        <div class="col-lg-6">
-                            <div class="p-5">
-                                <div class="text-center">
-                                    <div class="text-center">
-                                        <p style="color: black">
-                                            Nenhum conteúdo disponível <i class="fas fa-fw fa-sad-cry"></i>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <div class="card-body">
+                @if(isset($module->contents) and sizeof($module->contents) > 0)
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="dataTable" style="color: black">
+                            <thead>
+                            <tr>
+                                @if (isset($trail->users->find(Auth::user()->id)->pivot))
+                                    <th>Concluído</th>
+                                @endif
+                                <th>Título</th>
+                                <th>Descrição</th>
+                                <th>Duração</th>
+                                <th>Provedor de Conteúdo</th>
+                                <th>Assunto</th>
+                                <th>Tipo</th>
+                                <th>Link</th>
+                            </tr>
+                            </thead>
+                            <tfoot>
+                            <tr>
+                                @if (isset($trail->users->find(Auth::user()->id)->pivot))
+                                    <th>Concluído</th>
+                                @endif
+                                <th>Título</th>
+                                <th>Descrição</th>
+                                <th>Duração</th>
+                                <th>Provedor de Conteúdo</th>
+                                <th>Assunto</th>
+                                <th>Tipo</th>
+                                <th>Link</th>
+                            </tr>
+                            </tfoot>
+                            <tbody>
+                            @foreach($module->contents as $key => $content)
+                                <tr>
+                                @if (isset($trail->users->find(Auth::user()->id)->pivot))
+                                        <td style="text-align: center">
+                                            <form action="{{ route('user.status.content', ['content' => $content]) }}" method="POST">
+                                                @csrf
+                                                <label>
+                                                    <select class="dropdown-list" name="content_status" onchange="this.form.submit()">
+                                                        @if (isset($content->users->find(Auth::user()->id)->pivot) and
+                                                            $content->users->find(Auth::user()->id)->pivot->content_status == 1)
+                                                            <option value="0">Não estudei</option>
+                                                            <option value="1" selected="selected">Concluído</option>
+                                                        @else
+                                                            <option value="0" selected="selected">Não estudei</option>
+                                                            <option value="1">Concluído</option>
+                                                        @endif
+                                                    </select>
+                                                </label>
+                                            </form>
+                                        </td>
+                                    @endif
+                                    <td>{{$content->title}}</td>
+                                    <td>{{$content->description}}</td>
+                                    <td>{{$content->time}}</td>
+                                    <td>{{$content->content_by}}</td>
+                                    <td>{{$content->subject}}</td>
+                                    <td>{{$content->type}}</td>
+                                    <td><a href="{{$content->link}}">{{$content->link}}</a></td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
-                </div>
+                @endif
             </div>
-        @endif
+        </div>
     </div>
 @endsection
 
@@ -106,25 +142,25 @@
 {{--</ul>--}}
 
 
-{{-- <form action="{{ route('user.status.content', ['content' => $content]) }}" method="POST">
-    @csrf
-    <select name="content_status">
-        @if (isset($content->users->find(Auth::user()->id)->pivot))
-            @if ($content->users->find(Auth::user()->id)->pivot->content_status == 0)
-                <option value="0" disabled>Não estudei</option>
-            @else
-                <option value="0">Não estudei</option>
-            @endif
-            @if ($content->users->find(Auth::user()->id)->pivot->content_status == 1)
-                <option value="1" disabled>Concluído</option>
-            @else
-                <option value="1">Consluído</option>
-            @endif
-        @else
-            <option value="0" disabled>Não estudei</option>
-            <option value="1">Consluído</option>
-        @endif
+{{-- <form action="{{ route('user.status.content', ['content' => $content]) }}" method="POST">--}}
+{{--    @csrf--}}
+{{--    <select name="content_status">--}}
+{{--        @if (isset($content->users->find(Auth::user()->id)->pivot))--}}
+{{--            @if ($content->users->find(Auth::user()->id)->pivot->content_status == 0)--}}
+{{--                <option value="0" disabled>Não estudei</option>--}}
+{{--            @else--}}
+{{--                <option value="0">Não estudei</option>--}}
+{{--            @endif--}}
+{{--            @if ($content->users->find(Auth::user()->id)->pivot->content_status == 1)--}}
+{{--                <option value="1" disabled>Concluído</option>--}}
+{{--            @else--}}
+{{--                <option value="1">Consluído</option>--}}
+{{--            @endif--}}
+{{--        @else--}}
+{{--            <option value="0" disabled>Não estudei</option>--}}
+{{--            <option value="1">Consluído</option>--}}
+{{--        @endif--}}
 
-    </select>
-    <button type="submit">Enviar</button>
-</form> --}}
+{{--    </select>--}}
+{{--    <button type="submit">Enviar</button>--}}
+{{--</form> --}}

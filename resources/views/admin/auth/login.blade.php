@@ -24,8 +24,6 @@
 </head>
 
 <body class="bg-gradient-primary">
-
-
     <main class="py-4">
         <div class="container">
             <!-- Outer Row -->
@@ -100,16 +98,44 @@
             </div>
 
         </div>
+
+        {{-- Modal Alerta --}}
+        <div class="modal fade" id="alertModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+            aria-labelledby="alertModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="alertModalLabel">Atenção</h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p>A plataforma para administradores possui suporte apenas para versão Desktop.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
     <!-- Bootstrap core JavaScript-->
     <script src="{{ url('assets/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ url('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="{{ url('assets/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
     <!-- Custom scripts for all pages-->
     <script src="{{ url('assets/js/sb-admin-2.min.js') }}"></script>
+
+    <script>
+        const alertModal = document.getElementById('alertModal')
+        var myModal = new bootstrap.Modal(alertModal)
+        myModal.show();
+    </script>
 
 </body>
 

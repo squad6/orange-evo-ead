@@ -14,12 +14,8 @@ class UserContentUserController extends Controller
     {
         $user = Auth::user();
 
-        // dd($request->content_status);
-
         $content_user = ContentUser::where('user_id', $user->id)
             ->where('content_id', $content->id);
-
-        // dd($content_user);
 
         if ($content_user->first() !== null) {
             $content_user->update([

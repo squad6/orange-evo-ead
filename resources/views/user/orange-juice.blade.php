@@ -42,7 +42,7 @@
                         <p style="color:black;">
                             O ‘podcast’ vitaminado que compartilha experiências e dicas de profissionais que já estão no mercado. O anfitrião, Joel Backschat, CTO do Grupo FCamara, traz convidados...
                         </p>
-                        <a class="btn btn-block" href="https://www.youtube.com/playlist?list=PLn9-AyVYB5GMbiG_7MerXuA6Hv1TChAbE" style="background-color: #36357E; color: white">
+                        <a target="_blank" class="btn btn-block" href="https://www.youtube.com/playlist?list=PLn9-AyVYB5GMbiG_7MerXuA6Hv1TChAbE" style="background-color: #36357E; color: white">
                             Acessar <i class="fas fa-fw fa-external-link-alt"></i>
                         </a>
                     </div>
@@ -60,7 +60,7 @@
                     <div class="card-body">
                         <p style="color:black;">
                             Lives que acontecem no nosso canal da Twitch, e buscam trazer um bate-papo com você e mostrar-lhe novos caminhos a seguir nessa jornada...                        </p>
-                        <a class="btn btn-block" href="https://www.twitch.tv/orangejuice_tech" style="background-color: #36357E; color: white">
+                        <a target="_blank" class="btn btn-block" href="https://www.twitch.tv/orangejuice_tech" style="background-color: #36357E; color: white">
                             Acessar <i class="fas fa-fw fa-external-link-alt"></i>
                         </a>
                     </div>
@@ -79,7 +79,7 @@
                         <p style="color:black;">
                             Uma comunidade feita para e por você, que está a começar ou migrando para a área de tecnologia. Aqui a troca de conhecimento é constante.
                         </p>
-                        <a class="btn btn-block" href="https://discord.com/invite/NtESsDFGx5" style="background-color: #36357E; color: white">
+                        <a target="_blank" class="btn btn-block" href="https://discord.com/invite/NtESsDFGx5" style="background-color: #36357E; color: white">
                             Acessar <i class="fas fa-fw fa-external-link-alt"></i>
                         </a>
                     </div>
@@ -99,7 +99,7 @@
                             Perdeu uma talk ou uma live? Prefere ver podcasts gravados em vídeo?
                             Não tem problema! Em nosso canal no Youtube, disponibilizamos...
                         </p>
-                        <a class="btn btn-block" href="https://www.youtube.com/c/OrangeJuicefc" style="background-color: #36357E; color: white">
+                        <a target="_blank" class="btn btn-block" href="https://www.youtube.com/c/OrangeJuicefc" style="background-color: #36357E; color: white">
                             Acessar <i class="fas fa-fw fa-external-link-alt"></i>
                         </a>
                     </div>
@@ -119,7 +119,7 @@
                             Nosso blog com conteúdos vitaminados sobre tecnologia e muito mais!
                             Você terá acesso a artigos que vão desde comunicação, metodologias e...
                         </p>
-                        <a class="btn btn-block" href="https://medium.com/orangejuicefc" style="background-color: #36357E; color: white">
+                        <a target="_blank" class="btn btn-block" href="https://medium.com/orangejuicefc" style="background-color: #36357E; color: white">
                             Acessar <i class="fas fa-fw fa-external-link-alt"></i>
                         </a>
                     </div>

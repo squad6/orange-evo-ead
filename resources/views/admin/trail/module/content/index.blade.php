@@ -105,7 +105,7 @@
                         <td>{{ $content->type }}</td>
                         <td>{{ $content->content_by }}</td>
                         <td>{{ $content->subject }}</td>
-                        <td>{{ $content->link }}</td>
+                        <td><a target="_blank" href="{{ $content->link }}">{{ $content->link }}</a></td>
                         <td>
                             <div class="d-flex justify-content-end">
                                 <button type="button" class="btn btn-primary mr-2" data-bs-toggle="modal"

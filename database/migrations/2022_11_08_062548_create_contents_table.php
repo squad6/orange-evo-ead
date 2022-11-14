@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('module_id');
             $table->string('title');
             $table->string('description');
-            $table->time('time');
+            $table->text('time');
             $table->string('content_by');
             $table->string('type');
             $table->string('link');

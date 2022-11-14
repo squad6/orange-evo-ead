@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->time('time');
+            $table->text('time');
             $table->string('trail_by');
             $table->timestamps();
         });

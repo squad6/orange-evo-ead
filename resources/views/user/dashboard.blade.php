@@ -93,7 +93,7 @@
                                                     </div>
                                                 <br>
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <small class="text-muted"><i data-feather="book"></i> {{ $trail->modules->count() }} Módulos | <i data-feather="clock"></i>{{ $trail->time }}</small>
+                                                    <small class="text-muted"><i data-feather="book"></i> {{ $trail->modules->count() }} Módulos | <i data-feather="clock"></i>  {{ $trail->time }}</small>
                                                     <div class="btn-group">
                                                         <a class="btn btn-danger"  href="{{ route('user.trail.show', $trail->id) }}">Continuar</a>
                                                     </div>
@@ -110,7 +110,7 @@
                                                     </div>
                                                 <br>
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <small class="text-muted"><i data-feather="book"></i> 3 Módulos | <i data-feather="clock"></i>  30h</small>
+                                                    <small class="text-muted"><i data-feather="book"></i> {{ $trail->modules->count() }} Módulos | <i data-feather="clock"></i>  {{ $trail->time }}</small>
                                                     <div class="btn-group">
                                                         <a class="btn btn-danger" href="{{ route('user.trail.show', $trail->id) }}">Iniciar</a>
                                                     </div>

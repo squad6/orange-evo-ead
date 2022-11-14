@@ -114,13 +114,22 @@ O <strong>Oranje Evolution</strong> nasce dentro deste ecossistema e seu objetiv
 
 - Gamificação (conquistas, tokens, níveis...)
 - Trilhas com cores diferentes
+- Um mapa que represente a trilha, com pontos de acampamento, representando os módulos
 - Desafios na própria plataforma
 - Recomendações de conteúdos relacionados
 - Recomendações de conteúdos através de testes
 - Teste de nivelamento
 - Suporte a comentários
+- Suporte a avaliação nas trilhas
 - Mostrar profissionais que validaram uma determinada trilha
-- Um mapa que represente a trilha, com pontos de acampamento, representando os módulos
+- Suporte a adição de foto ao perfil do usuário
+- Suporte a Atualização de dados do perfil do usuário
+- Autenticação por E-mail para usuários e admnistrador
+- Suporte a redefinição de senha de acesso
+- Emissão de certificado ao final da trilha
+- Filtros por trilha, módulo e conteúdo
+- Pesquisa por trilha, módulo e conteúdo
+- Limitar a inscrição do estudante a uma quantidade de trilhas
 
 ---
 

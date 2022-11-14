@@ -69,7 +69,6 @@ O <strong>Oranje Evolution</strong> nasce dentro deste ecossistema e seu objetiv
   > ./vendor/bin/sail npm install
   > ./vendor/bin/sail art migrate
   > ./vendor/bin/sail art db:seed
-  > ./vendor/bin/sail npm run build
 
   Administrador padrão
   

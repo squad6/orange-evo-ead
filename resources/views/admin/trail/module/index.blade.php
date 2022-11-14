@@ -116,7 +116,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="time" class="col-form-label">Duração Estimada:</label>
-                                <input type="time" class="form-control" id="time" name="time">
+                                <input type="text" placeholder="hh:mm:ss" class="form-control" id="time" name="time">
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
@@ -153,7 +153,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="time" class="col-form-label">Tempo Estimado:</label>
-                                <input type="time" class="form-control" id="time" name="time">
+                                <input type="text" placeholder="hh:mm:ss" class="form-control" id="time" name="time">
                             </div>
 
                             <div class="modal-footer">

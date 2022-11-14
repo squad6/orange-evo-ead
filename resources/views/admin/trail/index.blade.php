@@ -122,7 +122,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="time" class="col-form-label">Duração estimada:</label>
-                                <input type="time" class="form-control" id="time" name="time">
+                                <input type="text" placeholder="hh:mm:ss" class="form-control" id="time" name="time">
                             </div>
                             <div class="form-group">
                                 <label for="trail_by" class="col-form-label">Trilha criado por:</label>
@@ -163,7 +163,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="time" class="col-form-label">Tempo Estimado:</label>
-                                <input type="time" class="form-control" id="time" name="time">
+                                <input type="text" type="text" placeholder="hh:mm:ss" class="form-control" id="time" name="time">
                             </div>
                             <div class="form-group">
                                 <label for="trail_by" class="col-form-label">Trilha por:</label>

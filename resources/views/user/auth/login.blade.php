@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group">
                             <div class="custom-control custom-checkbox small">
-                                <input type="checkbox" class="custom-control-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <input type="checkbox" class="custom-control-input" name="remember" id="customCheck" {{ old('remember') ? 'checked' : '' }}>
                                 <label class="custom-control-label" for="customCheck">
                                     {{ __('Manter-me logado') }}
                                 </label>

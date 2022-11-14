@@ -95,13 +95,13 @@ O <strong>Oranje Evolution</strong> nasce dentro deste ecossistema e seu objetiv
 
 ### Back-end
 
-- Tratamento e excessões/erros
+- Tratamento de excessões/erros
 - Validações
 - Rotas
 - Lógica de cálculo do progresso de trilhas
 - Retornos de mensagens
 - Implementação de SoftDelete para as trilhas, módulos e conteúdos
-- Manter progresso da trilha, caso o usuário se desisncreve e se inscreva novamente.
+- Manter progresso da trilha, caso o usuário se desisncreva e se inscreva novamente.
 
 ### Front-end
 

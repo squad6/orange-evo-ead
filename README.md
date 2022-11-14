@@ -101,9 +101,11 @@ O <strong>Oranje Evolution</strong> nasce dentro deste ecossistema e seu objetiv
 - Lógica de cálculo do progresso de trilhas
 - Retornos de mensagens
 - Implementação de SoftDelete para as trilhas, módulos e conteúdos
+- Manter progresso da trilha, caso o usuário se desisncreve e se inscreva novamente.
 
 ### Front-end
 
+- Diferença visual entre Dashboard e demais telas do usuário
 - Apresentação de mensagens de sucesso e erro
 - Pedido de confirmação para algumas ações, principalmente na parte de administradores
 

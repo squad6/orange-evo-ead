@@ -56,30 +56,34 @@
                 <div class="container-xl px-4">
                     <h2 class="mt-5 mb-0">Minhas trilhas:</h2>
                     <p></p>
+                    @if (sizeof($trails) == 0)
+                        <p>Nenhuma trilha ainda iniciada :( .Adicione sua primeira lista na seção Trilhas.</p>
+                    @endif
                     <hr class="mt-0 mb-4" />
                     @if (isset($trails))
                         <div class="row">
                             @foreach ($trails as $trail)
                                 <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
                                     <div class="card">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <!--<i data-feather="monitor"></i>-->
-                                            <div class="btn-group">
-                                                <form action="{{ route('user.trail.unsubscribe', $trail->id) }}" method="POST">
-                                                    @csrf
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <button class="btn btn-danger" type="submit">Desinscrever-se</button>
-                                                </form>
-                                            </div>
-                                        </div>
+
 
                                         <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <!--<i data-feather="monitor"></i>-->
+                                                <div class="btn-group">
+                                                    <form action="{{ route('user.trail.unsubscribe', $trail->id) }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <button class="btn btn-danger mb-3" type="submit">Desinscrever-se</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                             <h5 class="card-title">{{ $trail->title }}</h5>
                                             <p class="card-text">{{ $trail->description}}
                                             </p>
                                             @if ($trail->pivot->trail_status_percentage > 0)
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    Progresso Trilha:
+                                                    Progresso da Trilha:
                                                     <div class="btn-group">
                                                         {{ $trail->pivot->trail_status_percentage }} %
                                                     </div>
@@ -89,7 +93,7 @@
                                                     </div>
                                                 <br>
                                                 <div class="d-flex justify-content-between align-items-center">
-                                                    <small class="text-muted"><i data-feather="book"></i> 3 Módulos | <i data-feather="clock"></i> 30h</small>
+                                                    <small class="text-muted"><i data-feather="book"></i> {{ $trail->modules->count() }} Módulos | <i data-feather="clock"></i>{{ $trail->time }}</small>
                                                     <div class="btn-group">
                                                         <a class="btn btn-danger"  href="{{ route('user.trail.show', $trail->id) }}">Continuar</a>
                                                     </div>

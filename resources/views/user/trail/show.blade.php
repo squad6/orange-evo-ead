@@ -73,14 +73,14 @@
                                         {{$module->time}}
                                     </h6>
                                 </div>
-                                @if (isset($trail->users->find(Auth::user()->id)->pivot))
+                                {{-- @if (isset($trail->users->find(Auth::user()->id)->pivot))
                                     <h5 class="font-weight-bold" style="color: #36357E">Progresso do Módulo <span
                                             class="float-right">{{ $trail->users->find(Auth::user())->getModuleStatusPercentage($module)}}%</span></h5>
                                     <div class="progress mb-4">
                                         <div class="progress-bar" role="progressbar" style="width: {{ $trail->users->find(Auth::user())->getModuleStatusPercentage($module)}}%;
                                         background-color:  #FE4400" aria-valuenow="{{ $trail->users->find(Auth::user())->getModuleStatusPercentage($module)}}" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                @endif
+                                @endif --}}
                                 <a class="btn btn-block" style="background-color: #FE4400; color: white; margin-left: auto"
                                    href="{{ route('user.module.show', ['trail' => $trail, 'module' => $module]) }}">Acessar Módulo</a>
                             </div>

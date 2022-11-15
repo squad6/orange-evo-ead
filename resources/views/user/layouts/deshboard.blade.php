@@ -13,12 +13,12 @@
             rel="stylesheet">
         <!-- Custom styles for this template-->
         <link href="{{ url('assets/css/sb-admin.css') }}" rel="stylesheet">
-        <link href="{{ url('assets/css/deshboard.css') }}" rel="stylesheet">
+        <link href="{{ url('assets/css/dashboard.css') }}" rel="stylesheet">
 
     </head>
 
     <body class="nav-fixed">
-        
+
         <main>
             @yield('content')
         </main>

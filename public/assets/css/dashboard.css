@@ -10,10 +10,6 @@
     color: #ffffff;
 }
 
-.feather {
-    color: #36357E;
-}
-
 .sidenav-light {
     font-family: Inter;
     font-style: Medium;
@@ -22,17 +18,9 @@
     background: #A8A8D0;
 }
 
-.sidenav-light:hover {
-    color: #36357E;
-}
-
-.bg-gradient-primary-to-secondary {
-    background-color: #FFDACC !important;
-    background-image: linear-gradient(135deg, #FFDACC 0%,#FFDACC 100%) !important;
-    border-radius: 0px 0px 16px 16px;
-    transition: 0.5s;
-    transform-style: preserve-3d;
-    filter: drop-shadow(0.9rem 0.9rem 3.5rem #999999);
+.btn-default {
+    background-color: #FE4400;
+    color: white;
 }
 
 .text-black {
@@ -47,11 +35,6 @@
     font-style: Bold;
     font-size: 16px;
     color: #000000 !important;
-}
-
-.card {
-    border: 2px solid #292961;
-    color: #292961;
 }
 
 .card-title {

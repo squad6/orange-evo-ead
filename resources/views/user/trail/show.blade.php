@@ -19,10 +19,13 @@
                             <p> Trilha disponibilizada por {{$trail->trail_by}}</p>
                             @if (isset($trail->users->find(Auth::user()->id)->pivot))
                                 <h5 class="font-weight-bold" style="color: #36357E">Progresso da Trilha <span
-                                        class="float-right">{{ $trail->users->find(Auth::user())->getTrailUserStatusPercentage($trail)}}%</span></h5>
+                                        class="float-right">{{ $trail->users->find(Auth::user())->getTrailUserStatusPercentage($trail)}}%</span>
+                                </h5>
                                 <div class="progress mb-4">
                                     <div class="progress-bar" role="progressbar" style="width: {{ $trail->users->find(Auth::user())->getTrailUserStatusPercentage($trail)}}%;
-                                        background-color:  #FE4400" aria-valuenow="{{ $trail->users->find(Auth::user())->getTrailUserStatusPercentage($trail)}}" aria-valuemin="0" aria-valuemax="100"></div>
+                                        background-color:  #FE4400"
+                                         aria-valuenow="{{ $trail->users->find(Auth::user())->getTrailUserStatusPercentage($trail)}}"
+                                         aria-valuemin="0" aria-valuemax="100"></div>
                                 </div>
                             @endif
                         </div>
@@ -41,7 +44,6 @@
         </div>
         <br>
         <!-- Content Row -->
-
         @if(isset($trail->modules) and sizeof($trail->modules) > 0)
             <div class="row">
                 @foreach($trail->modules as $key => $module)
@@ -81,8 +83,10 @@
                                         background-color:  #FE4400" aria-valuenow="{{ $trail->users->find(Auth::user())->getModuleStatusPercentage($module)}}" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 @endif --}}
-                                <a class="btn btn-block" style="background-color: #FE4400; color: white; margin-left: auto"
-                                   href="{{ route('user.module.show', ['trail' => $trail, 'module' => $module]) }}">Acessar Módulo</a>
+                                <a class="btn btn-block"
+                                   style="background-color: #FE4400; color: white; margin-left: auto"
+                                   href="{{ route('user.module.show', ['trail' => $trail, 'module' => $module]) }}">Acessar
+                                    Módulo</a>
                             </div>
                         </div>
                     </div>

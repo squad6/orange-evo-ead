@@ -63,12 +63,12 @@
                                         <i class="fas fa-fw fa-clock"></i>
                                         {{$trail->time}}
                                     </h6>
-                                    @if (isset($trail->users->find(Auth::user()->id)->pivot))
+                                    @if (isset($trail->users->find(Auth::user()->id)->pivot->trail_status_percentage) && $trail->users->find(Auth::user()->id)->pivot->trail_status_percentage > 0)
                                         <a class="btn" style="background-color: #FE4400; color: white; margin-left: auto"
                                            href="{{ route('user.trail.show', $trail->id) }}">Continuar</a>
                                     @else
                                         <a class="btn" style="background-color: #FE4400; color: white; margin-left: auto"
-                                           href="{{ route('user.trail.show', $trail->id) }}">Detalhes</a>
+                                           href="{{ route('user.trail.show', $trail->id) }}">Iniciar</a>
                                     @endif
                                 </div>
                                 @if (isset($trail->users->find(Auth::user()->id)->pivot))

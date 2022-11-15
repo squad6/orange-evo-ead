@@ -25,18 +25,18 @@
         <!-- End Card Title -->
 
         <!-- Content Row -->
-        @if(isset($trails) and sizeof($trails) > 0)
+        @if (isset($trails) and sizeof($trails) > 0)
             <div class="row">
-                @foreach($trails as $key => $trail)
+                @foreach ($trails as $key => $trail)
                     <!-- Pie Chart -->
                     <div class="col-xl-4 col-lg-5">
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
-                            <div
-                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                 <h4 class="m-0 font-weight-bold" style="color: #36357E">
                                     <i class="fas fa-fw fa-stream"></i>
-                                    {{ $trail->title }}</h4>
+                                    {{ $trail->title }}
+                                </h4>
                             </div>
                             <!-- Card Body -->
                             <div class="card-body" style="color:#000;">
@@ -45,31 +45,39 @@
                                         {{ $trail->description }}
                                     </p>
                                 </div>
-                                <p> Trilha disponibilizada por {{$trail->trail_by}}</p>
+                                <p> Trilha disponibilizada por {{ $trail->trail_by }}</p>
                                 <div class="navbar navbar-expand navbar-light bg-light">
                                     <h6 style="padding-right: 1%">
                                         <i class="fas fa-fw fa-puzzle-piece"></i>
-                                        {{sizeof($trail->modules)}} Módulo(s)
+                                        {{ sizeof($trail->modules) }} Módulo(s)
                                     </h6>
                                     <h6 class="">
                                         <i class="fas fa-fw fa-clock"></i>
-                                        {{$trail->time}}
+                                        {{ $trail->time }}
                                     </h6>
-                                    @if (isset($trail->users->find(Auth::user()->id)->pivot))
+                                    @if (isset($trail->users->find(Auth::user()->id)->pivot) &&
+                                        $trail->users->find(Auth::user()->id)->pivot->trail_status_percentage > 0)
                                         <a class="btn" style="background-color: #FE4400; color: white; margin-left: auto"
-                                           href="{{ route('user.trail.show', $trail->id) }}">Continuar</a>
+                                            href="{{ route('user.trail.show', $trail->id) }}">Continuar</a>
+                                    @elseif (isset($trail->users->find(Auth::user()->id)->pivot) &&
+                                        $trail->users->find(Auth::user()->id)->pivot->trail_status_percentage == 0)
+                                        <a class="btn" style="background-color: #FE4400; color: white; margin-left: auto"
+                                            href="{{ route('user.trail.show', $trail->id) }}">Iniciar</a>
                                     @else
                                         <a class="btn" style="background-color: #FE4400; color: white; margin-left: auto"
-                                           href="{{ route('user.trail.show', $trail->id) }}">Detalhes</a>
+                                            href="{{ route('user.trail.show', $trail->id) }}">Detalhes</a>
                                     @endif
                                 </div>
                                 @if (isset($trail->users->find(Auth::user()->id)->pivot))
                                     <h5 class="font-weight-bold" style="color: #36357E">Progresso da Trilha <span
-                                            class="float-right">{{ $trail->users->find(Auth::user())->getTrailUserStatusPercentage($trail)}}%</span>
+                                            class="float-right">{{ $trail->users->find(Auth::user())->getTrailUserStatusPercentage($trail) }}%</span>
                                     </h5>
                                     <div class="progress mb-4">
-                                        <div class="progress-bar" role="progressbar" style="width: {{ $trail->users->find(Auth::user())->getTrailUserStatusPercentage($trail)}}%;
-                                        background-color: #FE4400" aria-valuenow="{{ $trail->users->find(Auth::user())->getTrailUserStatusPercentage($trail)}}" aria-valuemin="0" aria-valuemax="100"></div>
+                                        <div class="progress-bar" role="progressbar"
+                                            style="width: {{ $trail->users->find(Auth::user())->getTrailUserStatusPercentage($trail) }}%;
+                                        background-color: #FE4400"
+                                            aria-valuenow="{{ $trail->users->find(Auth::user())->getTrailUserStatusPercentage($trail) }}"
+                                            aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
                                 @endif
                             </div>

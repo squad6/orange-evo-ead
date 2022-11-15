@@ -1,49 +1,20 @@
-@extends('user.layouts.deshboard')
+@extends('user.layouts.home')
 
-@section('content')
-    <nav class="topnav navbar navbar-expand shadow justify-content-between justify-content-sm-start navbar-light bg-white" id="sidenavAccordion">
-        <!-- Sidenav Toggle Button-->
-        <button class="btn btn-icon btn-transparent-dark order-1 order-lg-0 me-2 ms-lg-2 me-lg-0" id="sidebarToggle"><i data-feather="menu"></i></button>
-        <a class="navbar-brand pe-3 ps-4 ps-lg-2" href="index.html">Orange Evolution</a>
-        <!-- Navbar Items-->
-    </nav>
-    <div id="layoutSidenav">
-        <div id="layoutSidenav_nav">
-            <nav class="sidenav shadow-right sidenav-light">
-                <div class="sidenav-menu">
-                    <div class="nav accordion" id="accordionSidenav">
-                        <a class="nav-link" href="{{ route('user.dashboard') }}">
-                            <div class="nav-link-icon"><i data-feather="grid"></i></div>
-                            Dashboard
-                        </a>
-                        <!-- Sidenav Link (Tables)-->
-                        <a class="nav-link" href="{{ route('user.trail.index') }}">
-                            <div class="nav-link-icon"><i data-feather="activity"></i></div>
-                            Trilhas
-                        </a>
-                        <a class="nav-link" href="{{ route('user.orange') }}">
-                            <div class="nav-link-icon"><i data-feather="external-link"></i></div>
-                            Orange Juice
-                        </a>
-                        <!-- Sidenav Link (Tables)-->
-                        <a class="nav-link" href="{{ route('logout') }}">
-                            <div class="nav-link-icon"><i data-feather="log-out"></i></div>
-                            <form action="{{ route('logout') }}" method="POST">
-                                @csrf
-                                <button class="btn-logout" type="submit">Sair</button>
-                            </form>
-                        </a>
-                    </div>
-                </div>
-            </nav>
-        </div>
-        <div id="layoutSidenav_content">
-            <main>
-                <header class="py-10 mb-4 bg-gradient-primary-to-secondary">
-                    <div class="container-xl px-4">
-                        <div class="text-left">
-                            <h1 class="text-black">Ola!</h1>
-                            <p class="lead mb-0 text-black-50">
+@push('head')
+    <link href="{{ url('assets/css/dashboard.css') }}" rel="stylesheet">
+@endpush
+@section('page-content')
+    <div class="container-fluid">
+        <div class="card shadow mb-4" style="background-color: #FFDACC; color: black">
+            <div class="py-3">
+                <h2 class="m-0 font-weight-bold" style="padding-left: 1%; color: #36357E;">
+                    Olá, {{ Auth::user()->name }}!
+                    <i class="fas fa-fw fa-smile"></i>
+                </h2>
+                <div class="row">
+                    <div class="col-xl-5 col-md-4 mb-6">
+                        <div class="card-body">
+                            <p>
                                 Aqui você encontra as trilhas que está estudando!
                                 Sabemos que a área de tecnologia é vasta, e que a quantidade de informação,
                                 na maioria das vezes, mais atrapalha que ajuda. O equilíbrio é a chave.
@@ -51,80 +22,86 @@
                             </p>
                         </div>
                     </div>
-                </header>
-                <!-- Main page content-->
-                <div class="container-xl px-4">
-                    <h2 class="mt-5 mb-0">Minhas trilhas:</h2>
-                    <p></p>
-                    @if (sizeof($trails) == 0)
-                        <p>Nenhuma trilha ainda iniciada :( .Adicione sua primeira lista na seção Trilhas.</p>
-                    @endif
-                    <hr class="mt-0 mb-4" />
-                    @if (isset($trails))
-                        <div class="row">
-                            @foreach ($trails as $trail)
-                                <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
-                                    <div class="card">
-
-
-                                        <div class="card-body">
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <!--<i data-feather="monitor"></i>-->
-                                                <div class="btn-group">
-                                                    <form action="{{ route('user.trail.unsubscribe', $trail->id) }}" method="POST">
-                                                        @csrf
-                                                        <input type="hidden" name="_method" value="DELETE">
-                                                        <button class="btn btn-danger mb-3" type="submit">Desinscrever-se</button>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <h5 class="card-title">{{ $trail->title }}</h5>
-                                            <p class="card-text">{{ $trail->description}}
-                                            </p>
-                                            @if ($trail->pivot->trail_status_percentage > 0)
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    Progresso da Trilha:
-                                                    <div class="btn-group">
-                                                        {{ $trail->pivot->trail_status_percentage }} %
-                                                    </div>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $trail->pivot->trail_status_percentage }}%;" aria-valuenow="{{ $trail->pivot->trail_status_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ $trail->pivot->trail_status_percentage }}%</div>
-                                                    </div>
-                                                <br>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <small class="text-muted"><i data-feather="book"></i> {{ $trail->modules->count() }} Módulos | <i data-feather="clock"></i>  {{ $trail->time }}</small>
-                                                    <div class="btn-group">
-                                                        <a class="btn btn-danger"  href="{{ route('user.trail.show', $trail->id) }}">Continuar</a>
-                                                    </div>
-                                                </div>
-                                            @else
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    Progresso Trilha:
-                                                    <div class="btn-group">
-                                                        {{ $trail->pivot->trail_status_percentage }} %
-                                                    </div>
-                                                </div>
-                                                <div class="progress">
-                                                    <div class="progress-bar bg-danger" role="progressbar" style="width: {{ $trail->pivot->trail_status_percentage }}%;" aria-valuenow="{{ $trail->pivot->trail_status_percentage }}" aria-valuemin="0" aria-valuemax="100">{{ $trail->pivot->trail_status_percentage }}%</div>
-                                                    </div>
-                                                <br>
-                                                <div class="d-flex justify-content-between align-items-center">
-                                                    <small class="text-muted"><i data-feather="book"></i> {{ $trail->modules->count() }} Módulos | <i data-feather="clock"></i>  {{ $trail->time }}</small>
-                                                    <div class="btn-group">
-                                                        <a class="btn btn-danger" href="{{ route('user.trail.show', $trail->id) }}">Iniciar</a>
-                                                    </div>
-                                                </div>
-                                            @endif
-                                        </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main page content-->
+        @if(isset($trails) and sizeof($trails) > 0)
+            <div class="row">
+                @foreach($trails as $key => $trail)
+                    <!-- Pie Chart -->
+                    <div class="col-xl-4 col-lg-5">
+                        <div class="card shadow mb-4">
+                            <!-- Card Header - Dropdown -->
+                            <div
+                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                <h4 class="m-0 font-weight-bold" style="color: #36357E">
+                                    <i class="fas fa-fw fa-stream"></i>
+                                    {{ $trail->title }}</h4>
+                            </div>
+                            <!-- Card Body -->
+                            <div class="card-body" style="color:#000;">
+                                <div class="btn-group">
+                                    <form action="{{ route('user.trail.unsubscribe', $trail->id) }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <button class="btn btn-default" type="submit">Desinscrever-se</button>
+                                    </form>
+                                </div>
+                                <div class="chart-pie pt-4 pb-2">
+                                    <p>
+                                        {{ $trail->description }}
+                                    </p>
+                                </div>
+                                <p> Trilha disponibilizada por {{$trail->trail_by}}</p>
+                                <div class="navbar navbar-expand navbar-light bg-light">
+                                    <h6 style="padding-right: 1%">
+                                        <i class="fas fa-fw fa-puzzle-piece"></i>
+                                        {{sizeof($trail->modules)}} Módulo(s)
+                                    </h6>
+                                    <h6 class="">
+                                        <i class="fas fa-fw fa-clock"></i>
+                                        {{$trail->time}}
+                                    </h6>
+                                    @if (isset($trail->users->find(Auth::user()->id)->pivot))
+                                        <a class="btn" style="background-color: #FE4400; color: white; margin-left: auto"
+                                           href="{{ route('user.trail.show', $trail->id) }}">Continuar</a>
+                                    @else
+                                        <a class="btn" style="background-color: #FE4400; color: white; margin-left: auto"
+                                           href="{{ route('user.trail.show', $trail->id) }}">Detalhes</a>
+                                    @endif
+                                </div>
+                                @if (isset($trail->users->find(Auth::user()->id)->pivot))
+                                    <h5 class="font-weight-bold" style="color: #36357E">Progresso da Trilha <span
+                                            class="float-right">{{ $trail->users->find(Auth::user())->getTrailUserStatusPercentage($trail)}}%</span>
+                                    </h5>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar" role="progressbar" style="width: {{ $trail->users->find(Auth::user())->getTrailUserStatusPercentage($trail)}}%;
+                                        background-color: #FE4400" aria-valuenow="{{ $trail->users->find(Auth::user())->getTrailUserStatusPercentage($trail)}}" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <div class="card o-hidden border-0 my-5">
+                <div class="card-body p-0">
+                    <div class="row bg-light" style="justify-content: center;">
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <div class="text-center">
+                                        <p style="color: black">
+                                            Nenhuma trilha ainda iniciada :( .Adicione sua primeira lista na seção Trilhas.
+                                        </p>
                                     </div>
                                 </div>
-                            @endforeach
-
+                            </div>
                         </div>
-                    @endif
+                    </div>
                 </div>
-            </main>
-        </div>
-    </div>
+            </div>
+    @endif
 @endsection

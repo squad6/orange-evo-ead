@@ -25,7 +25,6 @@
         <!-- End Card Title -->
 
         <!-- Content Row -->
-
         @if(isset($trails) and sizeof($trails) > 0)
             <div class="row">
                 @foreach($trails as $key => $trail)

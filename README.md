@@ -27,9 +27,9 @@ O <strong>Oranje Evolution</strong> nasce dentro deste ecossistema e seu objetiv
 
 - Sistema de login
 - Cadastro/remoção de administradores
-- Cadastro/remoção de trilhas
-- Cadastro/remoção de módulos para cada trilha
-- Cadastro/remoção de conteúdos para cada módulo
+- Cadastro/edição/remoção de trilhas
+- Cadastro/edição/remoção de módulos para cada trilha
+- Cadastro/edição/remoção de conteúdos para cada módulo
 
 ---
 

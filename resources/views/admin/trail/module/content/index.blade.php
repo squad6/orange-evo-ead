@@ -89,9 +89,9 @@
                     <th scope="col">Título</th>
                     <th scope="col">Descrição</th>
                     <th scope="col">Duração</th>
-                    <th scope="col">Assunto</th>
+                    <th scope="col">Tipo</th>
                     <th scope="col">Conteúdo por</th>
-                    <th scope="col">Tema</th>
+                    <th scope="col">Assunto</th>
                     <th scope="col">Link</th>
                     <th scope="col" style="text-align: right">Ação</th>
                 </tr>
@@ -163,7 +163,7 @@
                                 <input type="text" placeholder="hh:mm:ss" class="form-control" id="time" name="time">
                             </div>
                             <div class="form-group">
-                                <label for="type" class="col-form-label">Assunto:</label>
+                                <label for="type" class="col-form-label">Tipo:</label>
                                 <input type="text" class="form-control" id="type" name="type">
                             </div>
                             <div class="form-group">
@@ -171,7 +171,7 @@
                                 <input type="text" class="form-control" id="content_by" name="content_by">
                             </div>
                             <div class="form-group">
-                                <label for="subject" class="col-form-label">Tema:</label>
+                                <label for="subject" class="col-form-label">Assunto:</label>
                                 <input type="text" class="form-control" id="subject" name="subject">
                             </div>
                             <div class="form-group">
@@ -216,7 +216,7 @@
                                 <input type="text" placeholder="hh:mm:ss" class="form-control" id="time" name="time">
                             </div>
                             <div class="form-group">
-                                <label for="type" class="col-form-label">Assunto:</label>
+                                <label for="type" class="col-form-label">Tipo:</label>
                                 <input type="text" class="form-control" id="type" name="type">
                             </div>
                             <div class="form-group">
@@ -224,7 +224,7 @@
                                 <input type="text" class="form-control" id="content_by" name="content_by">
                             </div>
                             <div class="form-group">
-                                <label for="subject" class="col-form-label">Tema:</label>
+                                <label for="subject" class="col-form-label">Assunto:</label>
                                 <input type="text" class="form-control" id="subject" name="subject">
                             </div>
                             <div class="form-group">

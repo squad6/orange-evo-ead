@@ -82,11 +82,11 @@ O <strong>Oranje Evolution</strong> nasce dentro deste ecossistema e seu objetiv
 
 <h2 id="conteudoxterno">:file_folder: Conteúdo Externo</h2> 
 
-* :clapper: Veja o nosso [vídeo de funcionalidades](#)! 
-* :loudspeaker: Nosso [Pitch](#). <br>
-* -- [MIRO](https://miro.com/app/board/uXjVPI1WYt0=/) <br>
-* -- [TRELLO](https://trello.com/w/squad6fc22/) <br>
-* -- [Figma](https://www.figma.com/file/Yf4djdvVJKDVBej3suAW75/Wireframes?node-id=61%3A6130)
+* :clapper: Veja o nosso [vídeo de funcionalidades](https://youtu.be/ghVIMZ0WJK8)! 
+* :loudspeaker: Nosso [Pitch](https://youtu.be/3-K6wkLMuXs). <br>
+* [MIRO](https://miro.com/app/board/uXjVPI1WYt0=/) <br>
+* [TRELLO](https://trello.com/w/squad6fc22/) <br>
+* [Figma](https://www.figma.com/file/Yf4djdvVJKDVBej3suAW75/Wireframes?node-id=61%3A6130)
 
 ---
 
